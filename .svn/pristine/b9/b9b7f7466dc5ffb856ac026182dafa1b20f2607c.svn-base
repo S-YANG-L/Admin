@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <link rel="stylesheet" href="../../css/iscroll.css" />
+        <link rel="stylesheet" href="../../css/weui.min.css" />
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/islider.js"></script>
+        <script src="../../js/iscroll.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="rentalDtl">
+            <div class="um-header" >
+                <a href="propertyInfo.html" class="um-back"></a>
+                <h3>信息维护</h3>
+            </div>
+            <div class="um-content">
+            
+	            <div class="um-noticediv">
+					<ul>
+						
+						<li>
+							<span>房屋名称</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="北京亦园A小区1单元1栋101"></span>		
+						</li>
+						<li>
+							<span>面积</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="68m"></span>		
+						</li>
+						<li>
+							<span>厅室</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="2室1厅1卫"></span>		
+						</li>
+						<li>
+							<span>朝向</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="南"></span>		
+						</li>
+						<li>
+							<span>租金类型</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="押一付三"></span>		
+						</li>
+						<li>
+							<span>月租金</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="￥1500"></span>		
+						</li>
+						<li>
+							<span>房屋描述</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="房屋周边及交通"></span>		
+						</li>
+						<li>
+							<span>房屋亮点</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="可短租、有阳台"></span>		
+						</li>
+						<li>
+							<span>出租要求</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="中介勿扰"></span>		
+						</li>
+						<li>
+							<span>室友要求</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="男女不限"></span>		
+						</li>
+						<li>
+							<span>姓名</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="李皇甫"></span>		
+						</li>
+						<li>
+							<span>电话</span>			
+							<span><input type="text" class="um-bulidmaintain" placeholder="15010896945"></span>		
+						</li>
+						<li>
+							<div>
+								<span style="display:block; margin: 10px 0;">拍照上传</span>                       
+		                        <div class="page__bd">
+							        <div class="weui-gallery" id="gallery">
+							            <span class="weui-gallery__img" id="galleryImg"></span>
+							            <div class="weui-gallery__opr">
+							                <a href="javascript:" class="weui-gallery__del">
+							                    <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+							                </a>
+							            </div>
+							        </div>					
+							        <div class="weui-cell__bd">
+							            <div class="weui-uploader">									
+							                <div class="weui-uploader__bd">
+							                    <ul class="weui-uploader__files" id="uploaderFiles"></ul>
+							                    <div class="weui-uploader__input-box">
+							                    	<input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="" value="">
+							                	</div>
+							                </div>
+							            </div>
+							        </div>										
+							    </div>                                                                					
+							</div>
+							
+							
+						
+						</li>
+						
+						
+						
+					</ul>
+					
+							
+				</div>
+            
+            
+				<div style="text-align: center;margin-top: 0.5rem;">
+					<button class="bluebutton">提交</button>
+				</div>
+
+            </div>
+        </div>
+
+       <script type="text/javascript" class="uploader js_show">
+    $(function(){
+        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+            $uploaderInput = $("#uploaderInput"),
+            $uploaderFiles = $("#uploaderFiles")
+            ;
+ 
+        $uploaderInput.on("change", function(e){
+            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+            for (var i = 0, len = files.length; i < len; ++i) {
+                var file = files[i];
+ 
+                if (url) {
+                    src = url.createObjectURL(file);
+                } else {
+                    src = e.target.result;
+                }
+ 
+                $uploaderFiles.append($(tmpl.replace('#url#', src)));
+            }
+        });
+        $uploaderFiles.on("click", "li", function(){
+            $galleryImg.attr("style", this.getAttribute("style"));
+            $gallery.fadeIn(100);
+        });
+        $gallery.on("click", function(){
+            $gallery.fadeOut(100);
+        });
+    });
+ </script>
+    </body>
+</html>

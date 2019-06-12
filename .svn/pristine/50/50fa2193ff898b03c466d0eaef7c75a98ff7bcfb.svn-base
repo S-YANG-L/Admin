@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <script src="../js/reset.js"></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../js/message.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" id="message">
+            <div class="um-header" >
+                <h3>消息中心</h3>
+            </div>
+            <div class="um-content">
+                <ul class="um-list">
+
+                    <li>
+                        <a href="#" class="btn um-list-center penda" onclick="notice()" style="display: inline-block;">
+                        <div class="center-icon">
+                            <img alt="" src="../img/inside-icon.png">
+                            <span class="center-redpoint"  id="OrderNumber" style ="display:none">3</span>
+                        </div>
+                        <div class="um-media-body">
+                            <h4 class="um-mobilebt32">内部通知</h4>
+                        </div> </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn um-list-center penda" onclick="deal()" style="display: inline-block;">
+                        <div class="center-icon">
+                            <img alt="" src="../img/work-complaint-icon.png">
+                        </div>
+                        <div class="um-media-body">
+                            <h4 class="um-mobilebt32">待办中心</h4>
+                        </div> </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+﻿function admin() {
+    netService(0);
+    var t = (new Date()).valueOf();
+    summer.openWin({
+        id : 'admin' + t,
+        url : '/html/banner/admin.html'
+    });
+}
+
+function staff() {
+    netService(1);
+    var t = (new Date()).valueOf();
+    summer.openWin({
+        id : 'staff' + t,
+        url : '/html/banner/staff.html'
+    });
+}
+
+function leaseholder() {
+    netService(2);
+    var t = (new Date()).valueOf();
+    summer.openWin({
+        id : 'leaseholder' + t,
+        url : '/html/banner/leaseholder.html'
+    });
+}
+
+function netService(title) {
+    summer.ajax({
+        "header" : {
+            Authorization : "OAuth2: token"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/banner/bannerInfo",
+        "param" : {
+            "token" : summer.getAppStorage("tokenEntity").token,
+            "tenantId" : summer.getAppStorage("tenantId"),
+            "appType" : title
+        },
+    }, function(response) {//成功回调
+        var data = JSON.parse(response.data);
+        if (data.code == "200") {
+            var jsonArray = data.bannerInfo;
+            for (var i = 0; i < jsonArray.length; i++) {
+                var entity = jsonArray[i];
+                summer.setStorage("batchnum", entity.shufflingFigure);
+            }
+        }
+    }, function(response) {//失败回调
+        alert("请联系管理员解决！");
+    });
+}
+
+function backClick() {
+    summer.closeWin({});
+}

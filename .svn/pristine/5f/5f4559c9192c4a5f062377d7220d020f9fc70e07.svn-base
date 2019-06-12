@@ -1,0 +1,76 @@
+summerready = function() {
+    dasources();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function dasources() {
+    summer.ajax({
+        "header" : {
+            Authorization : "OAuth2: token"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/workOrder/listOrder",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId"),
+            id : summer.getStorage('repairinfodetailId')
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray = response.data.listOrder;
+        viewModel.data = ko.observableArray(jsonArray);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert("请联系管理员解决！");
+    });
+}
+
+function backClick() {
+    summer.closeWin({});
+}
+
+function agree() {
+    var type = document.getElementById("type").innerText;
+    summer.ajax({
+        "header" : {
+            Authorization : "OAuth2: token"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/waitingCenter/saveToDo",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            id : summer.getStorage('todoId'),
+            needState : 0
+        },
+    }, function(response) {//成功回调
+        summer.toast({
+            "msg" : "待办同意进行派单"
+        })
+        if (type == "投诉、咨询类") {
+            var t = (new Date()).valueOf();
+            summer.openWin({
+                id : 'repairinfodetail' + t,
+                url : '/html/repairmanage/repairinfodetail.html'
+            });
+        } else if (type == "报修类") {
+            //报修
+            var t = (new Date()).valueOf();
+            summer.openWin({
+                id : 'repairinfodetail2' + t,
+                url : '/html/repairmanage/repairinfodetail2.html'
+            });
+        } else if (type == "预约类") {
+            //预约
+            var t = (new Date()).valueOf();
+            summer.openWin({
+                id : 'repairinfodetail3' + t,
+                url : '/html/repairmanage/repairinfodetail3.html'
+            });
+        }
+    }, function(response) {//失败回调
+        alert("请联系管理员解决！");
+    });
+
+}

@@ -1,0 +1,71 @@
+summerready = function() {
+    summer.getPermission(["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"], //所需权限参数，多个权限用逗号分隔
+    function(response) {//成功回调
+        summer.getLocation(onSuccess, onError);
+        function onSuccess(position) {
+            summer.setStorage('longitude', position.coords.longitude)
+            //经度
+            summer.setStorage('latitude', position.coords.latitude);
+            //维度
+        };
+        function onError(error) {
+        }
+
+    }, function(response) {//失败回调
+    });
+};
+
+//房屋管理
+function house() {
+    summer.openWin({
+        id : 'new_page1',
+        url : 'html/rentalmanage/propertyInfo.html',
+    });
+}
+
+//物业缴费
+function customers() {
+    summer.openWin({
+        id : 'customers',
+        url : 'html/customers/customerList.html',
+    });
+}
+
+//工单管理
+function repair() {
+    summer.openWin({
+        id : 'repair',
+        url : 'html/repairmanage/repairman.html',
+    });
+}
+
+//考勤管理
+function attendance() {
+    summer.openWin({
+        id : 'attendance_check',
+        url : 'html/attendance/attendance_check.html',
+    });
+}
+
+//租赁管理
+function rental() {
+    summer.openWin({
+        id : 'customers',
+        url : 'html/buildingmanage/village.html',
+    });
+}
+
+//功程管理
+function schedule() {
+    summer.openWin({
+        id : 'workorder',
+        url : 'html/schedulecontrol/workorder.html',
+    });
+}
+
+function accesscontrol() {
+    summer.openWin({
+        "id" : "acc_customer",
+        "url" : "html/accesscontrol/acc_customer.html"
+    });
+}

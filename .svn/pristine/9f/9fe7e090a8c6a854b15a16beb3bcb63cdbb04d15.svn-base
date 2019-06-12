@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title>客户信息管理</title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+
+        <script src="../../js/reset.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <style>
+			div.Artical > div {
+				display: none;
+				color: #555;
+			}
+			div.Artical > div.active {
+				display: block;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="um-win" id="customerMan">
+            <div class="um-header" id="re-head">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>客户信息</h3>
+            </div>
+
+            <div class="um-content" style="margin-top:0;">
+
+                <ul class="um-tabbar um-tabbar-underline2 pt10 pb10 um-tabbar-switch" style="background: #fff;">
+                    <li class="active" data-tar='.contractlist'>
+                        <a>合同列表</a><span></span>
+                    </li>
+                    <li data-tar='.customerbill'>
+                        <a>账单列表</a><span></span>
+                    </li>
+                </ul>
+
+                <div class="Artical">
+                    <div class="contractlist active um-listview-wrap" id="listview">
+                        <ul class="um-list" data-bind="foreach: listContract">
+                            <li class="um-listview-row">
+                                <a href="#" class="penda" onclick="goContractdtl()">
+                                <div class="center-icon">
+                                    <img alt="" src="../../img/org2.png">
+                                </div>
+                                <div class="um-media-body2">
+                                    <h4 class="um-media-heading um-mobilebt32" data-bind="text:contractName"></h4>
+                                    <p class="um-mobilebthui">
+                                        <span data-bind="text:'租赁类型:'+(leaseType==0?'定租':'签租')"></span>
+                                    </p>
+                                    <p class="um-mobilebthui">
+                                        <span data-bind="text:'租赁时间:'+leaseStartDate+'至 '"></span><span data-bind="text:leaseEndDate"></span>
+                                    </p>
+
+                                </div> <div class="pend-stetus um-mobilebthui" data-bind="text:customerName"></div> </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="customerbill um-listview-wrap"id="listview1">
+                        <ul class="um-list" data-bind="foreach: listBills">
+                            <li class="um-listview-row">
+                                <a href="#" class="penda um-swipe-action um-no-icon um-list-centernotice" >
+                                <div class="center-icon">
+                                    <img alt=""src="../../img/org2.png">
+                                </div>
+                                <div class="um-media-body2">
+                                    <h4 class="um-media-heading um-mobilebt32" data-bind="text:leaseholdName"></h4>
+                                    <p class="um-mobilebthui">
+                                        <span>应付金额:</span><span data-bind="text:plannedReceiptAmount+'元'"></span>
+                                    </p>
+                                    <p class="um-mobilebthui">
+                                        <span>开账日期:</span><span data-bind="text:paymentDeadline"></span>
+                                    </p>
+                                    <p class="um-mobilebthui">
+                                        <span>缴款截至日期:</span><span data-bind="text:paymentDeadline"></span>
+                                    </p>
+                                </div> <div class="pend-stetus um-mobilebthui" data-bind="text:(leaseBillStatus==0?'未缴':(leaseBillStatus==1?'已缴':'作废'))"></div></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                /*导航更换js*/
+                $('ul.um-tabbar-switch  Li').click(function() {
+                    $(this).addClass('active').siblings('.active').removeClass('active');
+                    var tar = $(this).attr('data-tar');
+                    $(tar).addClass('active').siblings('.active').removeClass('active');
+                });
+            });
+        </script>
+    </body>
+    <script src="../../js/customers/customerMan.js"></script>
+</html>

@@ -1,0 +1,52 @@
+$(function() {
+    //Knockout绑定
+    var ViewModel = function() {
+    };
+    var viewModel = new ViewModel();
+    var jsonArray = [{
+        "sender" : "预约看房",
+        "img" : "../../img/rent.png",
+        "lastMsg" : "北京亦园A小区47栋4单元302",
+        "lastTime" : "待审批"
+    },{
+        "sender" : "预约看房2",
+        "img" : "../../img/rent.png",
+        "lastMsg" : "北京亦园A小区47栋6单元302",
+        "lastTime" : "待审批"
+    }];
+    var jsonArray2 = [
+    		{
+				"sender" : "预约看房1",
+        		"img" : "../../img/rent.png",
+        		"lastMsg" : "北京亦园A小区47栋6单元302",
+        		"lastTime" : "已审批"
+			},
+			{
+				"sender" : "预约看房1",
+        		"img" : "../../img/rent.png",
+        		"lastMsg" : "北京亦园A小区47栋6单元302",
+        		"lastTime" : "已审批"
+			}];
+
+    viewModel.data = ko.observableArray(jsonArray);
+    viewModel.contacts = ko.observableArray(jsonArray2);
+    ko.applyBindings(viewModel);
+
+    //构造控件实例
+   
+
+});
+
+function goTododtl() {
+	summer.openWin({
+		id : 'todoDtl',
+		url : 'html/messagemanage/todoDtl.html',
+	});
+}
+
+function goDonedtl() {
+	summer.openWin({
+		id : 'doneDtl',
+		url : 'html/messagemanage/doneDtl.html',
+	});
+}

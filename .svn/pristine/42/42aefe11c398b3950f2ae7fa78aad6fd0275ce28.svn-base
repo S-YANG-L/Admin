@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <script src="../js/reset.js"></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script>
+            var userName = summer.getAppStorage("userName");
+            document.getElementById("Name").innerText = userName;
+        </script>
+        <script src="../js/my.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    </head>
+    <body>
+        <div class="um-win">
+            <div class="um-myhead">
+                <img src="../img/mailhead.png" class="um-circle um-img-responsive">
+                <span id="Name" class="mailname">移动管理员</span>
+                <span class="mailjob">前端工程师</span>
+            </div>
+            <div class="my-operation" >
+                <ul>
+                    <li onclick="UPmaterial()">
+                        <span><img src="../img/my-write.png"></span>
+                        <span>修改密码</span>
+                    </li>
+                    <li onclick="Banner()">
+                        <span><img src="../img/my-write.png"></span>
+                        <span>Banner维护</span>
+                    </li>
+                </ul>
+            </div>
+            <div style="width:100%;text-align: center;position:absolute;bottom:0;">
+                <button class="bluebutton" onclick="btn0_click()">
+                    退出登录
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

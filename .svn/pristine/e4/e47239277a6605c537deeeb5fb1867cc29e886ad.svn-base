@@ -1,0 +1,28 @@
+summerready = function() {
+    dasources();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function dasources() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/contact/listClientG",
+        "param" : {
+            tenantId : 1,
+            id : summer.getStorage('cust2Id')
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray = response.data.listClientG;
+        viewModel.data = ko.observableArray(jsonArray);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/messagemanage/todoDtl.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div class="um-header" >
+                <a onclick="backClick()"  class="um-back"></a>
+                <h3>待办详情</h3>
+            </div>
+
+            <div class="um-content">
+                <div class="um-noticediv">
+                    <div class="notice-head">
+                        <div class="center-icon">
+                            <img alt="" src="../../img/work-repair-icon.png">
+                        </div>
+                        <div style="float:left;">
+                            <h4 class="um-media-heading um-mobilebt32">待办类型</h4>
+                            <p class="um-mobilebthui">
+                                2019年03月15日
+                            </p>
+                        </div>
+
+                    </div>
+                    <ul>
+                        <li>
+                            <span>房间号</span><span>北京亦园A小区47栋4单元302</span>
+                        </li>
+                        <li>
+                            <span>姓名</span><span>李皇甫</span>
+                        </li>
+                        <li>
+                            <span>电话</span><span>15010896965</span>
+                        </li>
+                        <li>
+                            <span>预约时间</span><span>2019-03-19 15:30-16:30</span>
+                        </li>
+                    </ul>
+                    <div class="btn-group btn-group-justify">
+                        <button type="button" class="btn um-btn-info">
+                            同意
+                        </button>
+                        <button type="button" class="btn um-btn-primary">
+                            拒绝
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

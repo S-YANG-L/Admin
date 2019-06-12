@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/iscroll.css" />
+        <link rel="stylesheet" href="../../css/screen.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <link rel="stylesheet" type="text/css" href="../../css/mint.css">
+        <script src="../../js/reset.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/iscroll.js"></script>
+        <script src="../../js/iscrollconfig.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="workorder">
+            <div class="um-header">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>预约记录</h3>
+            </div>
+            <div class="um-content">
+                <div>
+                    <div class="mail-search">
+                        <input id="sear" type="search" class="lease-search" placeholder="申请人" >
+                        <button class="lease-searchbtn screen">
+                            筛选
+                        </button>
+                        <button class="lease-searchbtn" onclick="searchClick()">
+                            搜索
+                        </button>
+                    </div>
+                </div>
+                <div class="um-screenbox">
+                    <!-- 时间筛选 -->
+                    <div class="screen-time">
+                        <span class="screen-bt">时间筛选</span>
+                        <div class="lease-input">
+                            <span>开始时间</span>
+                            <div class="fr">
+                                <input  id="start" type="text" class="inputnone scroller-date">
+                            </div>
+                        </div>
+                        <div class="lease-input">
+                            <span>结束时间</span>
+                            <div class="fr">
+                                <input  id="end" type="text" class="inputnone scroller-date">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;margin-top: 0.5rem;">
+                        <div style="display: flex;width: 80%;margin: auto;">
+                            <button style="margin-left: 0.5rem;margin-right: 0.5rem" class="bluebutton2" type="submit" onclick="check()">
+                                确定
+                            </button>
+                            <button style="margin-left: 0.5rem;margin-right: 0.5rem" class="bluebutton2" type="submit" onclick="formReset()">
+                                重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach: data">
+                        <li class="um-listview-row">
+                            <a href="#" class="penda" id="listview">
+                            <div class="center-icon">
+                                <img alt="" src="../../img/inspect-icon.png">
+                            </div>
+                            <div class="um-media-body2">
+                                <h4 class="um-media-heading um-mobilebt32" data-bind="text:houseName"></h4>
+                                <p>
+                                    <span class="um-mobilebthui" data-bind="text:'申请人:'+applicantName"></span>
+                                </p>
+                                <p>
+                                    <span style="color: black"></span>
+                                    <span class="um-mobilebthui" data-bind="text:'申请日期:'+applicantDate">
+                                </p>
+                            </div> <div class="pend-stetus um-mobilebthui" data-bind="text:billStatus"></div> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        $(function() {
+            $('.scroller-date').scroller('destroy').scroller({
+                preset : 'datetime',
+                theme : "ios7",
+                mode : "scroller",
+                display : "bottom",
+                animate : ""
+            });
+            $(".conditionif").click(function() {
+                $(this).toggleClass('conditionifactive');
+            });
+            $('.screen').click(function() {
+                $('.um-dark').fadeIn(100);
+                $('.um-screenbox').slideDown(200);
+            })
+            $('.um-dark').click(function() {
+                $('.um-dark').fadeOut(100);
+                $('.um-screenbox').slideUp(200);
+            })
+        });
+    </script>
+    <script src="../../js/appointment/appointmentRec.js"></script>
+</html>

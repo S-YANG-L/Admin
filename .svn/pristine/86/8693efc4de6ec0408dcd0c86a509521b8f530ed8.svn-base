@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <link rel="stylesheet" type="text/css" href="../../css/mint.css">
+
+        <script src="../../js/reset.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="workorder">
+            <div class="um-header">
+                <a href="../../index.html" class="um-back"></a>
+                <h3>巡检计划记录</h3>
+            </div>
+
+            <div class="um-content">
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach: data">
+                      
+                        <li class="um-listview-row">
+								<a href="#" class="penda">						
+									<div class="center-icon">
+										<img alt="" src="../../img/inspect-icon.png">								
+									</div>									
+									<div class="um-media-body2">
+										<h4 class="um-media-heading um-mobilebt32" data-bind="text:inspection"></h4>
+										<p class="um-mobilebthui" data-bind="text:inspectionEndTime"></p>
+									</div>
+									<div class="pend-stetus um-mobilebthui" data-bind="text:effectStatus==1?'已生效':'effectStatus'"> </div> 						
+								</a>
+							</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../../js/schedulecontrol/workorderRec.js"></script>
+</html>

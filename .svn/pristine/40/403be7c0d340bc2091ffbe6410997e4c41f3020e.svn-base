@@ -1,0 +1,21 @@
+﻿function staff() {
+    summer.openWin({
+        id : 'mail_list',
+        url : '/html/mail_list.html'
+    });
+
+}
+
+function customerP() {
+    summer.openWin({
+        id : 'cust',
+        url : '/html/cust.html'
+    });
+}
+
+function customerG() {
+    summer.openWin({
+        id : 'cust2',
+        url : '/html/cust2.html'
+    });
+}

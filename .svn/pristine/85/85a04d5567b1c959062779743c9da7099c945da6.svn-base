@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <style>
+            .msg-info {
+                position: relative;
+            }
+            .msg-info .um-badge {
+                position: absolute;
+                right: -10px;
+                font-size: 12px;
+            }
+            .msg-header {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                background: blue;
+                border-radius: 50%;
+                text-align: center;
+                color: white;
+            }
+            .um-listview-row:active {
+                background-color: #eee;
+            }
+
+        </style>
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="memorecord">
+            <div class="um-header" >
+                <a href="../../index.html" class="um-back"></a>
+                <h3>通知记录</h3>
+                <a href="memo.html" class="um-header-right ti-plus"></a>
+            </div>
+            <div class="um-content">
+
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach: data">
+                        <li class="um-listview-row">
+                            <a href="#" class="um-swipe-action um-no-icon um-list-centernotice ">
+                            <div class="center-icon">
+                                <img alt="" src="../../img/notice(2).png">
+                            </div>
+                            <div class="um-media-body">
+                                <p class="notice-bt">
+                                    <span class="um-mobilebt32" data-bind="text:title"></span>
+                                    <span class="um-gray f12 fr" data-bind="text:publishDate"></span>
+                                </p>
+                                <p class="um-gray f14 um-text-overflow2" data-bind="text:content"></p>
+                            </div> </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+    <script src="../../js/memomange/memorecord.js"></script>
+</html>

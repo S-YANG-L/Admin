@@ -1,0 +1,5 @@
+function btn0_click(){
+    summer.openWin({
+                    url : '/html/signin.html'
+                });
+}

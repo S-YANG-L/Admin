@@ -1,0 +1,57 @@
+﻿summerready = function() {
+    async2();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function async2() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/waitingCenter/listTodo",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            needUserId : summer.getAppStorage("userId")
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = response.data.listTodo;
+        var length = jsonArray1.length;
+        if (length > 0) {
+            document.getElementById("s1").style.display = "block";
+        }
+        var jsonArray2 = [{
+            msgNum : length
+        }];
+        viewModel.listTodo = ko.observableArray(jsonArray2);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}
+
+function notice() {
+    summer.openWin({
+        id : 'repairinfodetail',
+        url : '/html/memomange/memorecord.html'
+    });
+
+}
+
+function tickling() {
+    summer.openWin({
+        id : '',
+        url : ''
+    });
+}
+
+function deal() {
+    summer.openWin({
+        id : 'repairinfodetail',
+        url : '/html/messagemanage/pendingorder.html'
+    });
+}

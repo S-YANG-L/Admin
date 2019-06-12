@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <script src="../../js/reset.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/contract/contractDtl.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="contractDtl">
+            <div class="um-header" >
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>合同详情</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-noticediv um-listview-wrap" >
+                    <ul class="noticedivul" data-bind="foreach: data">
+                        <li class="um-listview-row">
+                            <div class="noticedivbt">
+                                <span>合同编号</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:contractNumber"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>合同名称</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:contractName"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>合同类型</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:contractType==1?'房源合同':'租赁物合同'"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>客户姓名</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:customerName"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>证件号</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:certificateNumber"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>联系电话</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:contactNumber"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>联系地址</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:contactAddress"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>定金</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:earnestMoney+'元'"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>下定日期</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:fixedRentDate"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>合同状态</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:(contractStatus==3 ? '已生效':(contractStatus==5 ? '作废':'已保存'))"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>租期开始时间</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:leaseStartDate"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>租期结束时间</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:leaseEndDate"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>上次开账时间</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:lastOpenDate"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>下次开账时间</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:nextOpenDate"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>付款方式</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:paymentMode==1?'月度付':(paymentMode==2?'季度付':(paymentMode==3?'半年付':(paymentMode==3?'一年付':'一次付清')))"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>签租日期</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:signLeaseDate"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>押金</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:deposit+'元'"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>租金单价</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:rentalUnitPrice+'元'"></p>
+                            </div>
+                            <div class="noticedivbt">
+                                <span>业务员</span>
+                                <p type="text" class="routinput tr"style="border:none" data-bind="text:salesMan"></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="um-noticediv">
+                    <div class="noticedivbt">
+                        <div class="noticediv-head">
+                            合同附件
+                        </div>
+                        <div class="active" id="listview">
+                            <ul class="um-list um-no-active" data-bind="foreach:data1">
+                                <li class="um-listview-row">
+                                    <span data-bind="text:id" style="display: none;"></span>
+                                    <span data-bind="text:fileName" style="width: 75%;"></span>
+                                    <img src="../../img/upload.png" style="width: 15%;line-height: 1.89rem;padding: 0.4rem;float: right;"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

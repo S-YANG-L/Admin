@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <style>
+			.um-listview-row {
+				border-top: 1px solid #f0f0f0;
+			}
+        </style>
+        <script src="../../js/rentalmanage/propertyInfo.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="propertyInfo">
+            <div class="um-header">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>房屋信息</h3>
+            </div>
+            <div class="um-content" style="background:#fff;">
+                <div class="mail-search">
+                    <span class="searchicon"> <img src="../../img/search-icon.png"> </span>
+                    <input id="sear" type="search" class="search-input" placeholder="请输入房间名称" onchange="searchClick()">
+                </div>
+                <div class="um-screen">
+                    <div class="screen01" >
+                        <select id="sq" class="screen01_drop_down" style="background:#fff;" onclick="community()"></select>
+                    </div>
+                    <div class="screen02" >
+                        <select id="xq" class="screen01_drop_down" style="background:#fff;" onclick="village()"></select>
+                    </div>
+                    <div class="screen03" >
+                        <select id="ld" class="screen01_drop_down" style="background:#fff;" onclick="building()"></select>
+                    </div>
+                    <div class="screen04" onclick="searchClick()">
+                        <select id="dy" class="screen01_drop_down" style="background:#fff;" >
+                            <option>点击筛选</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="notice-body">
+                    <div class="um-listview-wrap" id="listview">
+                        <ul class="um-list um-no-active" id="shopContent"  data-bind="foreach: data">
+                            <li class="um-listview-row leaselist" style="background:#fff;">
+                                <a href="#" class="um-list-item um-swipe-action um-no-icon" >
+                                <div class="um-list-item-media" style="padding: 0.2rem 0;">
+                                    <img data-bind="attr:{src:housePhotoVideo}" alt="暂无图片">
+                                </div>
+                                <div class="um-list-item-inner" >
+                                    <div class="um-list-item-body" style="padding-right:5px;">
+                                        <div data-bind="text:houseNameAll" class="leasebt"></div>
+                                        <div data-bind="text:houseName" class="leasebt"></div>
+                                        <div>
+                                            <span data-bind="text:inJacketArea+'m²'" style="color: red"></span>
+                                        </div>
+                                        <div>
+                                            <span data-bind="text:tablePrice+'￥/月'"></span>
+                                            <span data-bind="text:roomStatus"></span>
+                                        </div>
+                                    </div>
+                                </div> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

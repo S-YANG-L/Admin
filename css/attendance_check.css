@@ -1,0 +1,87 @@
+.um-footer-outside{
+	background-color:#f9f9f9; 
+	position:fixed;
+	left:0;
+	bottom:0;
+	width:100%;
+	z-index: 99;
+}
+			
+.btn-circle{
+	margin:0 auto;
+	top:130px;
+	display:block;
+}
+			
+.btn-outworker{
+	width:70px;
+	height:20px;
+	font-size:15px;
+	margin-top:10px;
+	right:5px;
+	position: absolute;
+
+}
+
+.location-time-enter{
+	width:200px;
+	height:50px;
+	margin-top:200px;
+	background:#D1D1D1;
+    left:10px;
+    font-size:15px;
+}
+			
+.location-time-exit{
+	width:200px;
+	height:50px;
+	margin-top:40px;
+	background:#D1D1D1;
+	left:10px;
+	font-size:15px;
+}
+
+.um-content{
+	padding:10%;
+}
+
+.um-blue{
+	font-size:18px;
+}
+
+.um-red{
+	font-size:12px;
+}
+
+div.Artical>div {
+	display:none;
+	color:#555;
+}
+div.Artical>div.active {
+	display:block;
+}
+div.Artical>div.news {
+	background:lightblue;
+}
+div.Artical>div.product {
+	background:lightgreen;
+}    
+   
+.um-process {
+	margin-top:10px;
+	margin-left: 10px;
+}
+.um-process .um-list-item {
+	position: relative;
+	border-left: 2px dotted green;
+}			
+.um-process .um-list-item:after {
+	content: url("../img/marker5.jpg");
+	position: absolute;
+	left: -12px;
+	top: 2px;
+	width:14px;
+}      
+.f14{
+	margin-left:15px;
+}

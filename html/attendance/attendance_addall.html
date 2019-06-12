@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/iscroll.css" />
+		<script src="../../js/reset.js"></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+
+
+    </head>
+    <body>
+        <div class="um-page active" id="index"  style="background-color: #efeff4;">
+            <div class="um-header header" um-water>
+                <a onclick="backClick()"  class="um-back"></a>
+                <h3>批量补考勤</h3>                
+            </div>
+            <div class="um-content">
+            	<div class="attendance-list">
+                  	
+                    <div class="um-check-group um-check-group-left">
+                    	
+                    	<ul>
+                    		<li>
+		                    	<label class="um-check-group-item">
+		                            <input class="um-checkbox" type="checkbox" value="">
+		                            <span class="um-icon-checkbox um-css3-vc"></span>
+		                            <div class="attendance-li">
+										<div class="attendance-li-left">
+					                		<p><span>03-26</span> <span>星期五</span></p>
+					                		<p><span class="attendance-li-lefticon"><img src="../img/attendance-late.png"></span></p>
+					                	</div>
+					                	<div class="attendance-li-right">
+					                		<a href="attendance_add.html"><img src="../img/att-supp.png"> </a>
+					                	</div>
+									</div>    						                            
+		                        </label>                  		
+                    		</li>
+                    		
+                    		<li>
+		                    	<label class="um-check-group-item">
+		                            <input class="um-checkbox" type="checkbox"  value="">
+		                            <span class="um-icon-checkbox um-css3-vc"></span>
+		                            <div class="attendance-li">
+										<div class="attendance-li-left">
+					                		<p><span>03-26</span> <span>星期五</span></p>
+					                		<p><span class="attendance-li-lefticon"><img src="../img/attendance-late.png"></span></p>
+					                	</div>
+					                	<div class="attendance-li-right">
+					                		<a href="attendance_add.html"><img src="../img/att-supp.png"> </a>
+					                	</div>
+									</div>    						                            
+		                        </label>                    		
+                    		</li>
+                    		
+                    		<li>
+		                    	<label class="um-check-group-item">
+		                            <input class="um-checkbox" type="checkbox"  value="">
+		                            <span class="um-icon-checkbox um-css3-vc"></span>
+		                            <div class="attendance-li">
+										<div class="attendance-li-left">
+					                		<p><span>03-26</span> <span>星期五</span></p>
+					                		<p><span class="attendance-li-lefticon"><img src="../img/attendance-late.png"></span></p>
+					                	</div>
+					                	<div class="attendance-li-right">
+					                		<a href="attendance_add.html"><img src="../img/att-supp.png"> </a>
+					                	</div>
+									</div>    						                            
+		                        </label>                    		
+                    		</li>
+                    		
+                    		<li>
+		                    	<label class="um-check-group-item">
+		                            <input class="um-checkbox" type="checkbox"  value="">
+		                            <span class="um-icon-checkbox um-css3-vc"></span>
+		                            <div class="attendance-li">
+										<div class="attendance-li-left">
+					                		<p><span>03-26</span> <span>星期五</span></p>
+					                		<p><span class="attendance-li-lefticon"><img src="../img/attendance-late.png"></span></p>
+					                	</div>
+					                	<div class="attendance-li-right">
+					                		<a href="attendance_add.html"><img src="../img/att-supp.png"> </a>
+					                	</div>
+									</div>    						                            
+		                        </label>                    		
+                    		</li>                    	
+                    	</ul>
+                     
+                    </div>
+               </div>
+               
+         <div class="attenadd-bottom">
+			<button class="attenadd-all" onclick="addAll()">全选</button>
+			<button class="attenadd-start">批量补考勤</button>
+		</div>
+               	
+				
+
+            </div>
+        </div>
+     
+     <script>
+     	function addAll(){
+     		var aInput = document.getElementsByClassName('um-checkbox');
+     		for(var i=0;i<aInput.length;i++){
+					aInput[i].checked=true;				
+			};	
+     	
+     	}
+     
+     </script>
+     
+     
+    </body>
+</html>

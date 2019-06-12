@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title>客户列表</title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+
+        <style>
+			.msg-info {
+				position: relative;
+			}
+			.msg-info .um-badge {
+				position: absolute;
+				right: -10px;
+				font-size: 12px;
+			}
+			.msg-header {
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				background: blue;
+				border-radius: 50%;
+				text-align: center;
+				color: white;
+			}
+			.um-listview-row:active {
+				background-color: #eee;
+			}
+        </style>
+        <script src="../../js/reset.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/customers/customerList.js" ></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div class="um-header" id="re-head">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>客户列表</h3>
+            </div>
+            <div class="mail-search">
+                <input id="sear" type="search" class="lease-search-su" placeholder="查询">
+                <button class="lease-searchbtn" onclick="searchClick()">
+                    搜索
+                </button>
+            </div>
+            <div class="um-content">
+                <div class="unread um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach:data">
+                        <li class="um-listview-row">
+                            <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                            <div class="mail-head">
+                                <img class="um-circle" data-bind="attr:{src:(headImageUrl==null?'../../img/inside-icon.png':headImageUrl)}" alt="暂无图片">
+                            </div>
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-body">
+                                    <p data-bind="text:customerName" class="mailp1"></p>
+                                    <p data-bind="text:contactAddress" class="mailp2"></p>
+                                </div>
+                                <div class="um-list-item-body">
+                                    <p class="mailp3">
+                                        <i class="mail-mobile"></i><span style="float:left;" data-bind="text:contactNumber"></span>
+                                    </p>
+                                </div>
+                            </div> </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

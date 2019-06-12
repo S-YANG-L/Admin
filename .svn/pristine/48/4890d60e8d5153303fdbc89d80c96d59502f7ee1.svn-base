@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/customers/payType.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="payType">
+            <div class="um-header" >
+                <a class="um-back" href="customerMan.html"></a>
+                <h3>账单信息</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-contentcenter">
+                    <div class="um-centerzt">
+
+                        <div class="pay-head" data-bind="foreach: data1">
+                            <div class="pay-headleft">
+                                <img src="../../img/pay-headicon.png">
+                            </div>
+                            <div class="pay-headright" >
+                                <p class="payheadone">
+                                    <span>账单缴费总额</span>
+                                </p>
+                                <p class="billtwo">
+                                    <span>业主：</span>
+                                    <span data-bind="text: customerName"></span>
+                                </p>
+                            </div>
+                            <div class="pay-headred">
+                                <span data-bind="text: account+'元'+"></span>
+                            </div>
+                        </div>
+
+                        <div class="pay-list um-listview-wrap" >
+                            <ul class="um-list" data-bind="foreach: data">
+                                <!--物业费 -->
+                                <li class="um-listview-row">
+                                        <span class="pay-listicon01"><img src="../../img/pay-icon01.png"></span>
+                                        <span class="pay-listtype" data-bind="text:moneyName"></span>
+                                        <span class="pay-listprice" data-bind="text:plannedReceiptAmount+'元'+"></span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="text-align: center;margin-top: 1rem;">
+                    <button id="" class="bluebutton" onclick="submit()">
+                        催缴
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

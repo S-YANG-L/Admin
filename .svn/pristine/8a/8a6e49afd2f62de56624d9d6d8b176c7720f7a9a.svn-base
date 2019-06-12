@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/iscroll.css" />
+        <link rel="stylesheet" href="../../css/weui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <style>
+			.iSlider-wrapper {
+				height: 150px;
+			}
+
+        </style>
+        <script src="../../js/iscroll.js"></script>
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/islider2.js"></script>
+        <script type="text/javascript" src="../../js/jquery-weui.js"></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/schedulecontrol/reportCondition.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="repairrecarddetail2">
+            <div class="um-header" >
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>上报情况</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-noticediv um-listview-wrap" id="listview">
+                    <ul class="um-list" data-bind="foreach: data">
+                        <li class="um-listview-row">
+                            <span>是否完成</span><span class="um-mobilebthui" data-bind="text:isFinish"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>是否正常</span><span class="um-mobilebthui" data-bind="text:isNormal"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>总次数</span><span class="um-mobilebthui" data-bind="text:inspectionNum"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>已巡检次数</span><span class="um-mobilebthui" data-bind="text:surplusNum"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>上报时间</span><span class="um-mobilebthui" data-bind="text:reportDate"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>备注</span><span class="um-mobilebthui" data-bind="text:remark"></span>
+                        </li>
+                    </ul>
+                    <ul style="border-top:none;">
+                        <li>
+                            <div>
+                                <span style="display:block; margin: 10px 0;">上报图片</span>
+                                <div class="page__bd">
+                                    <div class="weui-gallery" id="gallery">
+                                        <span class="weui-gallery__img" id="galleryImg"></span>
+                                    </div>
+                                    <div class="weui-cell__bd">
+                                        <div class="weui-uploader">
+                                            <div class="weui-uploader__bd">
+                                                <ul class="weui-uploader__files" id="uploaderFiles" ></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

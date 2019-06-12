@@ -1,0 +1,127 @@
+/*summerready = function() {
+ dasources();
+ }
+ var ViewModel = function() {
+ };
+ //Knockout绑定
+ var viewModel = new ViewModel();
+ function dasources() {
+ summer.ajax({
+ "header" : {
+ "Content-Type" : "application/json"
+ },
+ "type" : "POST",
+ "url" : "http://" + summer.getAppStorage('url') + "/cmcc/inspectionPlan/listDeviceInspection",
+ "param" : {
+ tenantId : summer.getStorage('tenantId'),
+ parentId : summer.getStorage('sbxj').id
+ },
+ }, function(response) {//成功回调
+ response.data = JSON.parse(response.data);
+ var jsonArray = response.data.listDeviceInspection;
+
+ viewModel.data = ko.observableArray(jsonArray);
+ ko.applyBindings(viewModel);
+ }, function(response) {//失败回调
+ alert(response.data);
+ alert(response.error);
+ });
+ } */
+
+$(function() {
+    var list = [{
+        content : "../img/g1.jpg"
+    }, {
+        content : "../img/g2.jpg"
+    }, {
+        content : "../img/g3.jpg"
+    }, {
+        content : "../img/g3.jpg"
+    }, {
+        content : "../img/g3.jpg"
+    }, {
+        content : "../img/g3.jpg"
+    }];
+    var islider = new iSlider({
+        type : 'pic',
+        data : list,
+        dom : document.getElementById("iSlider-wrapper"),
+        isLooping : true,
+        animateType : 'default',
+        onslideend : function(idx) {
+            $("#nav").find("li").eq(idx).addClass("active").siblings("li").removeClass("active");
+        },
+    });
+    islider.addBtn();
+    $("#nav").find("li").on("click", function() {
+        $(this).addClass("active").siblings("li").removeClass("active");
+        var i = $(this).index();
+        islider.slideTo(i);
+    });
+    $(islider.wrap).on("click", ".islider-btn-outer", function() {
+        var i = islider.slideIndex;
+        $("#nav").find("li").eq(i).addClass("active").siblings("li").removeClass("active");
+    });
+});
+//房屋管理
+function house() {
+    summer.openWin({
+        id : 'customers',
+        url : 'html/buildingmanage/village.html',
+    });
+}
+
+//物业缴费
+function customers() {
+    summer.openWin({
+        id : 'customers',
+        url : 'html/customers/customerList.html',
+    });
+}
+
+//工单管理
+function repair() {
+    summer.openWin({
+        id : 'repair',
+        url : 'html/repairmanage/repairman.html',
+    });
+}
+
+function payment() {
+    summer.openWin({
+        id : 'repair',
+        url : 'html/propertypayment/PropertyInfo.html',
+    });
+}
+
+//考勤管理
+function attendance() {
+    summer.openWin({
+        id : 'attendance_check',
+        url : 'html/attendance/attendance_check.html',
+    });
+}
+
+//租赁管理
+function rental() {
+    summer.openWin({
+        id : 'new_page1',
+        url : 'html/rentalmanage/propertyInfo.html',
+    });
+}
+
+//功程管理
+function schedule() {
+    summer.openWin({
+        id : 'workorder',
+        url : 'html/schedulecontrol/workorder.html',
+    });
+}
+
+//智能门禁
+function access() {
+    summer.openWin({
+        id : 'doors',
+        url : 'html/accesscontrol/doors.html',
+    });
+}

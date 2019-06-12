@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <script src="../js/reset.js"></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../js/knockout.js"></script>
+        <script type="text/javascript" src="../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../js/custDtl2.js" ></script>
+
+    </head>
+    <body>
+        <div class="um-win">
+            <div class="um-header" id="re-head">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>详情</h3>
+            </div>
+            <div class="um-myhead" data-bind="foreach:data">
+                <img class="um-circle um-img-responsive" data-bind="attr:{src:(headImageUrl==null?'../img/mailhead.png':headImageUrl)}" alt="暂无图片">
+                <span class="mailname" data-bind="text:companyName"></span>
+                <span class="mailjob" data-bind="text:businessAddress"></span>
+            </div>
+            <div class="um-grid um-mailtab">
+                <div class="um-grid-row um-mailbody um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach:data">
+                        <li class="um-listview-row">
+                            <span>公司名称</span><span data-bind="text:companyName"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>公司简介</span><span data-bind="text:companyAbbrevition"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>税籍户管</span><span data-bind="text:taxHouseholdManagement"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>法人代表</span><span data-bind="text:corporateRepresentative"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>组织机构代码</span><span data-bind="text:organizationalCode"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>工商执照号</span><span data-bind="text:businessLicenseNumber"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>税务执照号</span><span data-bind="text:taxLicenseNumber"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>纳税人识别号</span><span data-bind="text:taxpayeridentificationNumber"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>经营范围</span><span data-bind="text:businessScope"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>注册资金</span><span data-bind="text:registeredCapital"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>经营期限</span><span data-bind="text:operatingPeriod"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>注册地址</span><span data-bind="text:registeredAddress"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>经营地址</span><span data-bind="text:businessAddress"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>其他联系地址</span><span data-bind="text:otherContactAddresse"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>公司电话</span><span id="phone" data-bind="text:companyTelephone" onclick="callphone()"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>邮政编码</span><span data-bind="text:postalCode"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>传真</span><span data-bind="text:fax"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>接待业务员</span><span data-bind="text:receptionClerk"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>电子邮件</span><span data-bind="text:email"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>开户行及账号</span><span data-bind="text:openBankAndAccountNumber"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>手机</span><span id="phone1" data-bind="text:mobilePhone" onclick="callphone1()"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>联系人</span><span data-bind="text:contacts"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>接待日期</span><span data-bind="text:receptionDate"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>接待时间</span><span data-bind="text:receptionTime"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>访问类型</span><span data-bind="text:accessType"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>接待信息</span><span data-bind="text:receptionMessage"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

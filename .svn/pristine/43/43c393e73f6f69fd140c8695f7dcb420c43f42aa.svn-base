@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/iuapmobile.um2.css">
+		<link rel="stylesheet" href="../../css/iscroll.css"/>
+
+		<script src="../../js/reset.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/summer.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/messagemanage/work_order.js"></script>
+
+		<style>
+			div.Artical > div {
+				display: none;
+				color: #555;
+			}
+			div.Artical > div.active {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="um-win">
+			<div class="um-header">
+				<a onclick="fanhui()" class="um-back"></a>
+				<!-- <div class="um-input-search">
+				<input type="search" class="form-control" onclick="showSeek()"  id="obscureQuery" value="" placeholder="请输入单据">
+				class="um-input-cancle"
+				<span id="seek" onclick="obscure()" style = "display:none;">搜索</span>
+				</div> -->
+			</div>
+			<div class="um-content" style="margin-top:0;">
+
+				<ul class="um-tabbar um-tabbar-underline2 pt10 pb10 um-tabbar-switch" style="background: #fff;">
+					<li class="active" data-tar='.to-do'>
+						<a onclick="commission()">待办事项</a><span></span>
+					</li>
+					<li data-tar='.accept'>
+						<a onclick="alreadyTakeOrders()">已接单</a><span></span>
+					</li>
+					<li  data-tar='.done'>
+						<a onclick="accomplish()">已完成</a><span></span>
+					</li>
+				</ul>
+
+				<div class="Artical">
+
+					<!-- 待办	 class="to-do active "-->
+					<div class="to-do active " style="overflow: hidden;">
+						<div style="background:#fff;padding:0.3rem;overflow: hidden;">
+							<input type="search" class="lease-search" placeholder="请输入工单名称" id="commission0" >
+							<button class="lease-searchbtn" onclick="obscure()">
+								搜索
+							</button>
+						</div>
+						
+						<ul class="um-list" id="orderCommission0"></ul>
+					</div>
+
+					<!-- 已接单  class="accept"-->
+					<div class="accept" style="overflow: hidden;">
+						<div style="background:#fff;padding:0.3rem;overflow: hidden;">
+							<input type="search" class="lease-search" placeholder="请输入工单名称" id="commission1" >
+							<button class="lease-searchbtn" onclick="takeOrders()">
+								搜索
+							</button>
+						</div>
+						
+						<ul class="um-list" id="orderCommission1">
+
+						</ul>
+					</div>
+
+					<!-- 已完成  class="done"-->
+					<div class="done" style="overflow: hidden;">
+						<div style="background:#fff;padding:0.3rem;overflow: hidden;">
+							<input type="search" class="lease-search" placeholder="请输入工单名称" id="commission2" >
+							<button class="lease-searchbtn" onclick="endOrders()">
+								搜索
+							</button>
+						</div>
+						
+						<ul class="um-list" id="orderCommission2">
+
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		</div>
+
+		<script>
+			$(function() {
+				/*导航更换js*/
+				$('ul.um-tabbar-switch  Li').click(function() {
+					$(this).addClass('active').siblings('.active').removeClass('active');
+					var tar = $(this).attr('data-tar');
+					$(tar).addClass('active').siblings('.active').removeClass('active');
+				});
+			});
+		</script>
+
+	</body>
+</html>

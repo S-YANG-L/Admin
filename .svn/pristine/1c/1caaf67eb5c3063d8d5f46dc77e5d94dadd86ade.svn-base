@@ -1,0 +1,134 @@
+summerready = function() {
+    community();
+    //house();
+}
+//获取接单人
+function community() {
+    $("#sq").empty();
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/house/communityList",
+        "param" : {
+            tenantId : 1
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var code = response.data.code;
+        var communityList = response.data.communityList;
+        if (code == "200") {
+            for (var i = 0; i < communityList.length; i++) {
+                var community = communityList[i];
+                var $option = $('<option value="' + community.communityName + '">' + community.communityName + '</option>');
+                $option.appendTo($("#sq"));
+            }
+            village();
+        }
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+
+}
+
+function village() {
+    $("#xq").empty();
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/house/villageList",
+        "param" : {
+            tenantId : 1,
+            communityName : $("#sq").val()
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var code = response.data.code;
+        var villageList = response.data.villageList;
+        if (code == "200") {
+            for (var i = 0; i < villageList.length; i++) {
+                var village = villageList[i];
+                var $option = $('<option value="' + village.villageName + '">' + village.villageName + '</option>');
+                $option.appendTo($("#xq"));
+            }
+            building();
+        }
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+}
+
+function building() {
+    $("#ld").empty();
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/house/buildingList",
+        "param" : {
+            tenantId : 1,
+            villageName : $("#xq").val()
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var code = response.data.code;
+        var buildingList = response.data.buildingList;
+        if (code == "200") {
+            for (var i = 0; i < buildingList.length; i++) {
+                var building = buildingList[i];
+                var $option = $('<option value="' + building.buildingName + '">' + building.buildingName + '</option>');
+                $option.appendTo($("#ld"));
+            }
+            house();
+        }
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+}
+
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function house() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/house/houseList",
+        "async" : "false",
+        "param" : {
+            tenantId : 1,
+            buildingName : $("#ld").val()
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = response.data.houseList;
+        //summer.setStorage('jsonArray1', jsonArray1)
+        //viewModel.houseList = ko.observableArray(summer.getStorage('jsonArray1'));
+        viewModel.houseList = ko.observableArray(jsonArray1);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+}
+
+$(function() {
+    var listview = UM.listview("#listview");
+    //添加控件方法
+    listview.on("itemClick", function(sender, args) {
+        //这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        var item = viewModel.houseList()[args.rowIndex];
+        summer.setStorage('houseId', item.id);
+        summer.openWin({
+            id : 'rentalDtl',
+            url : 'html/rentalmanage/rentalDtl.html'
+        });
+
+    });
+});

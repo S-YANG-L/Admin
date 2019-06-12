@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+
+        <link rel="stylesheet" type="text/css" href="../../css/fullcalendar-1.6.4.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.calendar-2.7.0.css">
+        <style>
+			div.Artical > div {
+				display: none;
+				color: #555;
+			}
+			div.Artical > div.active {
+				display: block;
+			}
+
+
+        </style>
+
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/attendance_check.js" ></script>
+        <script src="../../js/fullcalendar-1.6.4.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.calendar-2.7.0.js"></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+
+    </head>
+    <body>
+        <div class="">
+
+            <div class="attendance-top">
+                <div class="att-header" >
+                    <a onclick="backClick()" class="um-backwhite"></a>考勤管理 <a id="outworkReport" class="um-outsign" onclick="outwork_report()">外勤上报</a>
+                </div>
+            </div>
+
+            <div class="attendance-ul">
+                <ul class="um-tabbar um-tabbar-switch">
+                    <li class="active" data-tar='.news'>
+                        <i class="signicon"></i>
+                        <div class="attendance-mod">
+                            签到
+                        </div>
+                    </li>
+                    <li data-tar='.product' onclick="abnormalCheckingIn(this)">
+                        <!-- <li data-tar='.product'> -->
+                        <i class="abnormalicon"></i>
+                        <div class="attendance-mod">
+                            异常考勤
+                        </div>
+                    </li>
+                    <li data-tar='.game' onclick="particulars(this)">
+                        <!-- <li data-tar='.game' > -->
+                        <i class="detailsicon"></i>
+                        <div class="attendance-mod">
+                            考勤详情
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="Artical attmargin">
+                <!-- 签到 -->
+                <div class="news active ">
+                    <div class="location-time-enter" id = "checkStateDiv" style="display: none;">
+                        <p>
+                            <span id="checkState"></span>
+                        </p>
+                    </div>
+                    <div class="location-time-enter" id = "checkOutWorkDiv" style="display: none;">
+                        <p>
+                            <span>外勤打卡</span>
+                        </p>
+                    </div>
+                    <div id="content" class="um-content" >
+                        <div class="location-time-enter" id="checkTimeUpDiv" style="display: none;">
+                            <div class="location-time-left">
+                                <p>
+                                    <span id="checkDataUp"></span><span id="checkTimeUp" style="margin-left:1rem;"></span>
+                                </p>
+                                <p>
+                                    <span id="checkLOUp"></span>
+                                </p>
+                            </div>
+                            <div class="location-time-right">
+                                <span id = "checkStateUp"> </span>
+                            </div>
+                        </div>
+                        <div class="location-time-exit" id="checkTimeDiv" style="display: none;">
+                            <div class="location-time-left">
+                                <p>
+                                    <span id="checkData"></span><span id="checkTime" style="margin-left:1rem;"></span>
+                                </p>
+                                <p>
+                                    <span id="checkLO"></span>
+                                </p>
+                            </div>
+                            <div class="location-time-right">
+                                <span id = "checkStateON"></span>
+                            </div>
+                        </div>
+                        <div  id="checkid">
+                            <!-- class="btn-attendance" -->
+                            <button type="submit" id="btn_submit" onclick="checkingIn(this)" disabled = "true" value="">
+                                打卡
+                            </button>
+                        </div>
+                        <p class="now-position">
+                            <span><img src="../../img/now-position.png"> </span> 打卡地点: <span id="checkLocation">未在打卡范围</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 异常考勤 -->
+                <div class="product">
+                    <div class="um-content" id="content">
+                        <div class="attendance-list">
+                            <ul id="ul" style="overflow: hidden;">
+
+                            </ul>
+                            <div style="text-align: center; margin-top:3rem;">
+                                <button type="submit" class="bluebutton" id="batchAbnormalBTN" onclick="batchAbnormal(this)">
+                                    批量补考勤
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- 考勤详情 -->
+                <div class="game">
+                    <div class="um-content">
+                        <a class="um-screen" onclick="Getchaxun()" >筛选</a>
+                        <div class="um-screenbox" id="chaxun">
+
+                        </div>
+
+                        <!-- 数据 -->
+                        <div class="um-process" id="clockDiv">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <script>
+            $(function() {
+                /*导航更换js*/
+                $('ul.um-tabbar-switch  Li').click(function() {
+                    $(this).addClass('active').siblings('.active').removeClass('active');
+                    var tar = $(this).attr('data-tar');
+                    $(tar).addClass('active').siblings('.active').removeClass('active');
+                });
+            });
+        </script>
+    </body>
+</html>

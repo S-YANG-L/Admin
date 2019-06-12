@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <script src="../../js/reset.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/customers/contractDtl.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="contractDtl">
+            <div class="um-header" >
+                <a href="customerMan.html" class="um-back"></a>
+                <h3>合同详情</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-noticediv">
+                    <ul data-bind="foreach: data">
+                        <li>
+                            <span>合同编号</span>
+                            <span data-bind="text:contractNumber"></span>
+                        </li>
+                        <li>
+                            <span>合同名称</span>
+                            <span data-bind="text:contractName"></span>
+                        </li>
+                        <li>
+                            <span>客户姓名</span>
+                            <span data-bind="text:customerName"></span>
+                        </li>
+                        <li>
+                            <span>证件号</span>
+                            <span data-bind="text:certificateNumber"></span>
+                        </li>
+                        <li>
+                            <span>联系电话</span>
+                            <span data-bind="text:contactNumber"></span>
+                        </li>
+                        <li>
+                            <span>联系地址</span>
+                            <span data-bind="text:contactAddress"></span>
+                        </li>
+                        <li>
+                            <span>定金</span>
+                            <span data-bind="text:earnestMoney"></span>
+                        </li>
+                        <li>
+                            <span>下定日期</span>
+                            <span data-bind="text:fixedRentDate"></span>
+                        </li>
+                        <li>
+                            <span>租期开始时间</span>
+                            <span data-bind="text:leaseStartDate"></span>
+                        </li>
+                        <li>
+                            <span>租期结束时间</span>
+                            <span data-bind="text:leaseEndDate"></span>
+                        </li>
+                        <li>
+                            <span>业务员</span>
+                            <span data-bind="text:salesMan"></span>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

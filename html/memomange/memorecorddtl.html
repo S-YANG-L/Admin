@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="memorecorddtl">
+            <div class="um-header" >
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>详情</h3>
+            </div>
+            <div class="um-content">
+
+                <div class="um-noticediv">
+                    <ul data-bind="foreach: data">
+                        <li>
+                            <span>标题</span>
+                            <span data-bind="text:title"></span>
+                        </li>
+                        <li>
+                            <span>URL</span>
+                            <span data-bind="text:url"></span>
+                        </li>
+                        <li>
+                            <span>正文</span>
+                            <span data-bind="text:content"></span>
+                        </li>
+                        <li>
+                            <span>发布范围</span>
+                            <span data-bind="text:releaseScope"></span>
+                        </li>
+                        <li>
+                            <span>发布人</span>
+                            <span data-bind="text:publisher"></span>
+                        </li>
+                        <li>
+                            <span>发布时间</span>
+                            <span data-bind="text:publishDate"></span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </body>
+    <script src="../../js/memomange/memorecorddtl.js"></script>
+</html>

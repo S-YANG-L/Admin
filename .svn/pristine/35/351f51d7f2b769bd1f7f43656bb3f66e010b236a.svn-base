@@ -1,0 +1,70 @@
+$(function() {
+//Knockout绑定
+var ViewModel = function() {
+};
+var jsonArray = [{
+'fjNo' : 'A区1栋1单元1层101',
+'fzName' : '张三',
+'status' : '锁定'
+},{
+'fjNo' : 'A区1栋1单元1层102',
+'fzName' : '李四',
+'status' : '锁定'
+},{
+'fjNo' : 'A区1栋1单元1层103',
+'fzName' : '王五',
+'status' : '锁定'
+}, ]
+var viewModel = new ViewModel();
+viewModel.data = ko.observableArray(jsonArray);
+ko.applyBindings(viewModel);
+//构造控件实例
+var listview = UM.listview('#listview');
+//添加控件方法
+listview.on('pullDown', function(sender) {
+//这是可以编写列表下拉加载逻辑，参数sender即为当前列表实例对象
+var row = {
+'fjNo' : 'A区1栋1单元2层201',
+'fzName' : '曹操',
+'status' : '锁定'
+};
+viewModel.data.unshift(row);
+sender.refresh();
+});
+listview.on('pullUp', function(sender) {
+//这是可以编写列表上拉刷新逻辑，参数sender即为当前列表实例对象
+var row = {
+'fjNo' : 'A区1栋1单元2层202',
+'fzName' : '孙权',
+'status' : '锁定'
+};
+viewModel.data.push(row);
+sender.refresh();
+});
+listview.on('itemDelete', function(sender, args) {
+//这是可以编写行删除逻辑，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+args.$target.slideUp(500, function() {
+var item = viewModel.data()[args.rowIndex];
+viewModel.data.remove(item);
+});
+});
+listview.on('itemClick', function(sender, args) {
+//这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+//alert('您点击了列表第' + (args.rowIndex + 1) + "行！");
+        summer.openWin({
+            id : 'access',
+            url : '/html/accesscontrol/access.html',
+            pageParam : {
+                name : '11'
+            }
+        });
+});
+listview.on('itemSwipeLeft', function(sender, args) {
+//这里可以处理行左滑事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+sender.showItemMenu(args.$target);
+});
+listview.on('tapHold', function() {
+//这里可以处理长按事件
+console.log('您长按了列表！');
+});
+});

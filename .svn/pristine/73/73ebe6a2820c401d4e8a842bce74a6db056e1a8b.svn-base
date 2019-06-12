@@ -1,0 +1,33 @@
+$(function() {
+    //Knockout绑定
+    var ViewModel = function() {
+    };
+    var viewModel = new ViewModel();
+    var jsonArray = [{
+        "sender" : "李四",
+        "img" : "../../img/org1.png",
+        "msgNum" : 0,
+        "lastMsg" : "2018/07/16-2019/07/16",
+        "lastTime" : "在租"
+    }, {
+        "sender" : "王五",
+        "img" : "../../img/org2.png",
+        "msgNum" : 0,
+        "lastMsg" : "2018/07/16-2019/07/16",
+        "lastTime" : "在租"
+    }, {
+        "sender" : "赵六",
+        "img" : "../../img/org3.png",
+        "msgNum" : 0,
+        "lastMsg" : "2018/03/16-2019/03/16",
+        "lastTime" : "退租"
+    }];
+
+
+    viewModel.data = ko.observableArray(jsonArray);
+    ko.applyBindings(viewModel);
+
+    //构造控件实例
+   
+
+});

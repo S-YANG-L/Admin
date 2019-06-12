@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/iscroll.css" />
+		<script src="../../js/reset.js"></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/iscroll.js"></script>
+		<script src="../../js/attendance_add.js"></script>
+        <style>
+        .um-list .um-list-item-left {
+            width: 60px;
+        }
+                .um-time{
+            background:#ffffff;
+            border-top:1px solid #dddddd;
+            border-bottom:1px solid #dddddd;
+        }
+        .um-time-list{
+            height:46px;
+            line-height: 46px;
+        }
+        .um-time-list:first-child{
+            border-bottom:1px solid #dddddd;
+        }
+        .um-time-txt{
+            float: left;
+            color:#8c8d8e;
+        }
+        .um-time-list .fr{
+            position:relative;
+            float: right;
+            margin-right:30px;
+        }
+        .um-time-list .fr:after{
+            content: "";
+            position:absolute;
+            right:-15px;
+            top:15px;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-right: 2px solid #8c8d8e;
+            border-top: 2px solid #8c8d8e;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .um-time-list input{
+            display:block;
+            width: 180px;
+            height: 45px;
+            line-height:45px;
+            border: none;
+            outline: none;
+            text-align: right;
+            background: #fff;
+        }
+        
+        </style>
+    </head>
+    <body>
+        <div class="um-page active" id="index"  style="background-color: #efeff4;">
+            <div class="um-header header" um-water>
+                <a onclick="backClick()"  class="um-back"></a>
+                <h3>补考勤</h3>                
+            </div>
+            <div class="um-content">
+            		<div class="lease-input">
+						<span>请假类型</span>
+						<select id="leaveGenre" class="inputnowidth" style="background:#fff;">
+                    		<option value='0'>产假</option>
+                    		<option value='1'>事假</option>
+                    		<option value='2'>病假</option>
+                    		<option value='3'>婚假</option> 
+                    		<option value='4'>丧假</option>
+                    		<option value='5'>年假</option>
+                    	</select>
+					</div>
+            		<div class="lease-input">
+						<span>开始时间</span>
+						<div class="fr">
+                            <input name="start1" id="start" type="text" class="inputnone scroller-date" readonly="">
+                        </div>                            
+					</div>
+					<div class="lease-input">
+						<span>结束时间</span>                        
+                         <div class="fr">
+                            <input name="end1" id="end" type="text" class="inputnone scroller-date">
+                        </div>                                                               
+					</div>
+					<div class="lease-input" id="sponsorDIV">
+						<span>发起人</span>
+						<input id="sponsor" type="text" class="um-input-new" value="">
+					</div>
+					<!-- <div class="lease-input">
+						<span>审批人</span>
+						<div class="approval-person">
+							<a>李皇甫</a>
+							<a>李皇甫</a>
+						</div>
+					</div> -->
+					
+				<div class="um-leavingmessage">
+					<p class="leavemsgbt">请假事由</p>
+					<textarea name="" id="cause" class="form-control leavemsgtext" placeholder="请填写您的请假事由"></textarea>
+				</div>
+				
+           	 	<div style="text-align: center; margin-top:3rem;">
+					<button class="bluebutton" id="batchSubmit" type="submit" onclick="submitAll(this)">提交</button>
+				</div>
+
+            </div>
+        </div>
+         <script>
+        	$(function () {
+        		$('.scroller-date').scroller('destroy').scroller({
+        			preset: 'time',
+        			theme: "ios7",
+        			mode: "scroller",
+        			display: "bottom",
+        			animate: ""
+        		});	
+        	});
+
+        </script>
+        
+        
+    </body>
+</html>

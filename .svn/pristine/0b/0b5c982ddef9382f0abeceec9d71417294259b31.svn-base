@@ -1,0 +1,64 @@
+summerready = function() {
+    getType();
+}
+//获取发布范围
+function getType() {
+    $("#tzry").empty();
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/contact/listStaff",
+        "async" : true,
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId")
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var code = response.data.code;
+        var listStaff = response.data.listStaff;
+        if (code == "200") {
+            for (var i = 0; i < listStaff.length; i++) {
+                var Staff = listStaff[i];
+                var $option = $('<option value="' + Staff.name + '">' + Staff.name + '</option>');
+                $option.appendTo($("#tzry"));
+            }
+        }
+    }, function(response) {//失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}
+
+//保存
+function submit() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/notice/saveNotice",
+        "param" : {
+            title : $("#title").val(),
+            url : $("#url").val(),
+            content : $("#zw").val(),
+            releaseScope : $("#tzry").val(),
+            publishDate : $("#publishDate").val(),
+            publisher : summer.getAppStorage("userName"),
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId")
+        },
+    }, function(response) {//成功回调
+        summer.toast({
+            "msg" : "发布成功!"
+        })
+        summer.openWin({
+            "id" : "memorecord",
+            "url" : "html/memomange/memorecord.html"
+        });
+    }, function(response) {//失败回调
+        alert("参数有误！");
+    });
+}

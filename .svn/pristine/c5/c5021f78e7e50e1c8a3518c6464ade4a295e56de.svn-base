@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" id="paidInfo">
+            <div class="um-header">
+                <a href="propertyInfo.html" onclick="closeframe()" class="um-back"> 返回</a>
+                <h3>费用详情</h3>
+            </div>
+
+            <div class="um-content">
+                <ul class="um-list">
+                    <mt-cell-swipe v-for="(item, index) in listDatas">
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    房间编号
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" disabled="disabled" placeholder="北京亦园A小区1单元1栋102">
+                                </div>
+                            </div>
+                        </li>
+
+                        <div class="um-input-text">
+                            <input type="text" class="form-control" placeholder="缴费项目">
+                        </div>
+
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    水费
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="0">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    物业费
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="0">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    电费
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="0">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    宽带费
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="0">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    清洁费
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="0">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    缴费区间
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="100-15000">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    缴费金额
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="0">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    缴费情况
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="已清缴">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    催缴时间
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="2019/02/19">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left pl15">
+                                    催缴人
+                                </div>
+                                <div class="um-list-item-right">
+                                    <input type="text" class="form-control tr" placeholder="管理员">
+                                    <span class="um-gray f12"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </mt-cell-swipe>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

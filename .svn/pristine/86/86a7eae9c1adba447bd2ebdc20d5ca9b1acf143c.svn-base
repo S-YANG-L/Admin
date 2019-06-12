@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<!-- 待删除 -->
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <style>
+			.msg-info {
+				position: relative;
+			}
+			.msg-info .um-badge {
+				position: absolute;
+				right: -10px;
+				font-size: 12px;
+			}
+			.msg-header {
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				background: blue;
+				border-radius: 50%;
+				text-align: center;
+				color: white;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="um-frame" id="billList">
+            <div id="content" class="um-content">
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach: data">
+                        <li class="um-listview-row">
+                            <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                            <div class="um-list-item-media msg-info">
+                                <img alt="" src="../../img/bill.png" width=50>
+                            </div>
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-body">
+                                    <h4 class="um-media-heading fb f16 um-text-overflow" data-bind="text:billNumber"></h4>
+                                    <p class="um-gray f14 um-text-overflow" data-bind="text:signLeaseDate"></p>
+                                </div>
+                                <div class="um-list-item-body">
+                                    <h4 class="um-media-heading fb f16 um-text-overflow" data-bind="text:unpaidAmount"></h4>
+                                    <p class="um-gray f14 um-text-overflow" data-bind=""></p>
+                                </div>
+                            </div> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../../js/customers/customerBill.js" ></script>
+</html>

@@ -1,0 +1,57 @@
+function submitAll(t) {
+    var ids = getQueryString("ids");
+
+    //保存数据
+    summer.ajax({
+        type : 'post',
+        url : summer.getAppStorage('url') + '/checkingin/disposebatchabnormal',
+        param : {
+            "token" : summer.getAppStorage("tokenEntity").token,
+            "staffName" : summer.getAppStorage("userName"),
+            "staffId" : summer.getAppStorage("userId"),
+            "tenantId" : summer.getAppStorage("tenantId"),
+            "leaveGenre" : $("#leaveGenre").val(), //请假类型
+            "start" : $("#start").val(), //开始时间
+            "end" : $("#end").val(), //结束时间
+            "cause" : $("#cause").val(), //请假原因
+            "checkids" : ids//ids
+        },
+        header : {
+            Authorization : "OAuth2: token"
+        }
+    }, function(response) {
+        response.data = JSON.parse(response.data);
+        UM.toast({
+            text : response.data.state
+        });
+        //跳转页面
+        var t = (new Date()).valueOf();
+        summer.openWin({
+            "id" : "attendanceADD" + t,
+            "url" : "/html/attendance/attendance_check.html"
+        });
+    }, function(response) {
+        UM.toast({
+            text : "请重新操作"
+        });
+    });
+}
+
+//获取url参数
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null)
+        return unescape(r[2]);
+    return null;
+}
+
+//页面加载事件
+summerready = function() {
+    $("#sponsor").val(summer.getAppStorage("userName"));
+    //默认发起人
+    $("#sponsor").attr("readonly", "readonly")
+}
+function backClick() {
+    summer.closeWin({});
+}

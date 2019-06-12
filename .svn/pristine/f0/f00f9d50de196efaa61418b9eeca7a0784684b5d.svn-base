@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/buildInfo.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script src="../../js/buildingmanage/buildInfo.js" ></script>
+        <style>
+        	div.Artical>div {
+        		display:none;
+        		color:#555;
+        	}
+        	div.Artical>div.active {
+        		display:block;
+        	}
+        </style>
+    </head>
+    <body>
+        <div class="um-win" id="buildInfo">
+            <div class="um-header" id="re-head">
+                <a href="village.html" class="um-back"></a>
+                <h3>房屋信息管理</h3>
+
+            </div>
+             <div class="um-content" style="margin-top:0;">
+             	                
+             	<ul class="um-tabbar um-tabbar-underline2 pt10 pb10 um-tabbar-switch" style="background: #fff;">
+                	<li class="active" data-tar='.aptInfo'><a>出租信息</a><span></span></li>
+                	<li data-tar='.renthistory'><a>租客记录</a><span></span></li>
+                </ul>               
+             	                
+             	<div class="Artical"> 
+                
+			        <!-- 出租信息	 -->	        
+			        <div class="aptInfo active ">
+			             <div class="um-noticediv">
+							<ul>
+								<li><span style="color:#1e82d2;">房主</span></li>
+								<li><span>姓名</span>			<span>李皇甫</span>		</li>
+								<li><span>证件号</span>		<span>37064232422322312</span>		</li>
+							</ul>
+							<ul>	
+								<li><span style="color:#1e82d2;">租客</span></li>
+								<li><span>姓名</span>			<span>李皇甫</span>		</li>
+								<li><span>证件号</span>		<span>37064232422322312</span>		</li>
+								<li><span>姓名</span>			<span>李皇甫</span>		</li>
+								<li><span>证件号</span>		<span>37064232422322312</span>		</li>
+							</ul>	
+							<ul>	
+								<li><span style="color:#1e82d2;">房屋费用</span></li>
+								<li><span>水费余额</span>		<span>30.00</span>		</li>
+								<li><span>电费余额</span>		<span>-30.00</span>		</li>
+								<li><span>暖气费余额</span>		<span>00.00</span>		</li>
+								<li><span>宽带费余额</span>		<span>500.00</span>		</li>
+								<li><span>物业费余额</span>		<span>足额</span>		</li>
+							</ul>
+									
+						</div>							                	
+			       </div>
+                	
+                	<!-- 租客记录 -->
+                	<div class="renthistory">
+                	
+			            <ul class="um-list" data-bind="foreach:data">
+							<li >
+								<a href="#" class="penda" onclick="goRepairdetaildtl()">						
+									<div class="center-icon">
+										<img alt="" data-bind="attr:{'src': img}">								
+									</div>									
+									<div class="um-media-body2">
+										<h4 class="um-media-heading um-mobilebt32" data-bind="text:sender"></h4>
+										<p class="um-mobilebthui" data-bind="text:lastMsg"></p>
+									</div>
+									<div class="pend-stetus um-mobilebthui" data-bind="text:lastTime"> </div> 						
+								</a>
+							</li>
+											
+						</ul>
+			                
+			              
+                	</div>
+
+                </div>               
+             
+             </div>
+            
+        </div>
+        <script>
+        	$(function () {			 
+        		 /*导航更换js*/
+        		 $('ul.um-tabbar-switch  Li').click(function(){
+        			$(this).addClass('active').siblings('.active').removeClass('active');
+        			var tar=$(this).attr('data-tar');
+        			$(tar).addClass('active').siblings('.active').removeClass('active');
+        		}); 
+        	});
+        </script>
+        
+        
+    </body>
+</html>

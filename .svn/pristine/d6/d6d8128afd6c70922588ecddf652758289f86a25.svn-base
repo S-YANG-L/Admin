@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/repairmanage/repairrecarddetail2.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="repairrecarddetail2">
+            <div class="um-header" >
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>工单记录详情</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-noticediv um-listview-wrap" id="listview">
+                    <ul class="um-list" data-bind="foreach: data">
+                        <li class="um-listview-row">
+                            <span>客户名称</span><span class="um-mobilebthui" data-bind="text:realEstateCustomer"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>联系人</span><span class="um-mobilebthui" data-bind="text:contacts"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>主题</span><span class="um-mobilebthui" data-bind="text:orderContent"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>房间名称</span><span class="um-mobilebthui" data-bind="text:houseName"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>联系电话</span><span class="um-mobilebthui" data-bind="text:contactNumber"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>联系地址</span><span class="um-mobilebthui" data-bind="text:contactAddress"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>报修人</span><span class="um-mobilebthui" data-bind="text:repairPeople"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>报修内容</span><span class="um-mobilebthui" data-bind="text:repairContent"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>报修位置</span><span class="um-mobilebthui" data-bind="text:repairPosition"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>备注</span><span class="um-mobilebthui" data-bind="text:remark"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>接单人</span><span class="um-mobilebthui" data-bind="text:singlePerson"></span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

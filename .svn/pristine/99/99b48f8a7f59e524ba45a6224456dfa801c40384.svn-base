@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/iuapmobile.um2.css">
+		<link rel="stylesheet" href="../../css/weui.min.css" />
+		<script src="../../js/reset.js"></script>
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/doT.js"></script>
+		<script src="../../js/messagemanage/work_record.js"></script>
+
+	</head>
+	<body>
+		<div class="um-page" style="background:#efefef;">
+			<div class="um-header" >
+				<a onclick="fanhui()" class="um-back"></a>
+				<h3>工作记录</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="um-noticediv">
+					<div class="notice-head">
+						<div class="center-icon">
+							<img alt="" src="../img/work-repair-icon.png">
+						</div>
+						<div style="float:left;">
+							<h4 id="theme" class="um-media-heading um-mobilebt32"></h4>
+							<p id="serialNumber" class="um-mobilebthui"></p>
+						</div>
+
+					</div>
+					<ul>
+						<li id="REAL_ESTATE_CUSTOMER1" style="display:none;"><span>客户名称</span> <span id="REAL_ESTATE_CUSTOMER">xxx</span></li>
+					<li id="CONTACTS1" style="display:none;"><span>联系人姓名</span> <span id="CONTACTS">暂无</span></li>
+					<li id="HOUSE_NAME1" style="display:none;"><span>房间名称</span> <span id="HOUSE_NAME">暂无</span></li>
+					<li id="CONTACT_NUMBER1" style="display:none;"><span>联系电话</span> <span id="CONTACT_NUMBER">暂无</span></li>
+					<li id="ORDER_CONTENT1" style="display:none;"><span>报修项目</span> <span id="ORDER_CONTENT">暂无</span></li>
+					<li id="CONTACT_ADDRESS1" style="display:none;"><span>联系地址</span> <span id="CONTACT_ADDRESS">暂无</span></li>
+					<li id="COMPLAINT_PEOPLE1" style="display:none;"><span>投诉人</span>  <span id="COMPLAINT_PEOPLE">暂无</span></li>
+					<li id="COMPLAINT_PHONE1" style="display:none;"><span>投诉人电话</span> <span id="COMPLAINT_PHONE">暂无</span></li>
+					<li id="CREATOR_NAME1" style="display:none;"><span>创建人名称</span> <span id="CREATOR_NAME">暂无</span></li>
+					<li id="CUSTOMER_EVENT1" style="display:none;"><span>客服事件</span> <span id="CUSTOMER_EVENT">暂无</span></li>
+					<li id="CUSTOMER_EVENT_SOURCE1" style="display:none;"><span>客服事件来源</span> <span id="CUSTOMER_EVENT_SOURCE">暂无</span></li>
+					<li id="COMPLAINT_CONTENT1" style="display:none;"><span>投诉内容</span> <span id="COMPLAINT_CONTENT">暂无</span></li>
+					<li id="REPAIR_PEOPLE1" style="display:none;"><span>报修人</span> <span id="REPAIR_PEOPLE">暂无</span></li>
+					<li id="DRAFT_DATE1" style="display:none;"><span>制单日期</span> <span id="DRAFT_DATE">暂无</span></li>
+					<li id="REPAIR_DATE1" style="display:none;"><span>报修日期</span> <span id="REPAIR_DATE">暂无</span></li>
+					<li id="APPOINTMENT_DATE1" style="display:none;"><span>预约日期</span> <span id="APPOINTMENT_DATE">暂无</span></li>
+					<!-- <li id="REPAIR_POSITION1" style="display:none;"><span>报修位置</span> <span id="REPAIR_POSITION">暂无</span></li> -->
+					<li id="CHARGING_OBJECT1" style="display:none;"><span>收费对象</span> <span id="CHARGING_OBJECT">暂无</span></li>
+					<li id="SERVICE_ADDRESS1" style="display:none;"><span>服务地址</span> <span id="SERVICE_ADDRESS">暂无</span></li>
+					<li id="SERVICE_CONTENT1" style="display:none;"><span>服务内容</span> <span id="SERVICE_CONTENT">暂无</span></li>
+					<li id="SERVICE_TYPE1" style="display:none;"><span>服务类型</span> <span id="SERVICE_TYPE">暂无</span></li>
+					<li id="HOUSE_NAME1" style="display:none;"><span>房屋名称</span> <span id="HOUSE_NAME">暂无</span></li>
+					<li id="REMARK1" style="display:none;"><span>备注</span> <span id="REMARK">暂无</span></li>
+						<input type="hidden" value="" id="orderID"/>
+						<input type="hidden"  id="batchno" value=""/>
+					
+					<ul style="border-top:none;">
+                            <li id="repairImage" style="display:none;">
+                                <div>
+                                    <span style="display:block; margin: 10px 0;">报修照片</span>
+                                    <div class="page__bd">
+                                        <div class="weui-gallery" id="gallery1">
+                                            <span class="weui-gallery__img" id="galleryImg1"></span>
+                                            <!-- <div class="weui-gallery__opr">
+                                                <a href="javascript:" > <i class="weui-icon-delete weui-icon_gallery-delete"></i> </a>
+                                            </div> -->
+                                        </div>
+                                        <div class="weui-cell__bd">
+                                            <div class="weui-uploader">
+                                                <div class="weui-uploader__bd">
+                                                    <ul class="weui-uploader__files" id="uploaderFiles1"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+					
+					</ul>
+				</div>
+
+				<div class="um-noticediv2" style="margin-top:0.426rem;">
+					<!-- <div class="lease-input">
+						<span>是否完成</span>
+						<div class="whether-btn">
+							<select id="isAccomplish" class="um-input-new" style="background:#fff;">
+								<option value="0">是</option>
+								<option value="1">否</option>
+							</select>
+						</div>
+					</div> -->
+
+					<div class="lease-text">
+						<p class="leavemsgbt">工作流程</p>
+						<textarea name="" id="workFlow" class="form-control leavemsgtext" placeholder="请填写具体工作流程"></textarea>
+					</div>
+					<div class="lease-text">
+						<span>拍照上传</span>
+						<div class="page__bd">
+							<div class="weui-gallery" id="gallery">
+								<span class="weui-gallery__img" id="galleryImg"></span>
+								<div class="weui-gallery__opr">
+									<a href="javascript:" class="weui-gallery__del"> <i class="weui-icon-delete weui-icon_gallery-delete"></i> </a>
+								</div>
+							</div>
+							<div class="weui-cell__bd">
+								<div class="weui-uploader">
+									<div class="weui-uploader__bd">
+										<ul class="weui-uploader__files" id="uploaderFiles"></ul>
+										<div class="weui-uploader__input-box">
+											<input id="uploaderInput" class="weui-uploader__input" accept="image/*" multiple="" value="" onclick="openPhotoAlbum()">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div style="text-align: center;margin-top: 1.5rem;">
+					<button id="openDoor" class="bluebutton" onclick="submitParticulars()">
+						提交
+					</button>
+				</div>
+
+			</div>
+		</div>
+
+		<script>
+			$(function() {
+				$('.whether-btn a').click(function() {
+					$(this).siblings().removeClass('whether-active');
+					$(this).addClass('whether-active');
+
+				})
+			});
+
+			$(function() {
+				var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+				    $gallery = $("#gallery"),
+				    $galleryImg = $("#galleryImg"),
+				    $uploaderInput = $("#uploaderInput"),
+				    $uploaderFiles = $("#uploaderFiles");
+
+				$uploaderInput.on("change", function(e) {
+					var src,
+					    url = window.URL || window.webkitURL || window.mozURL,
+					    files = e.target.files;
+					for (var i = 0,
+					    len = files.length; i < len; ++i) {
+						var file = files[i];
+
+						if (url) {
+							src = url.createObjectURL(file);
+						} else {
+							src = e.target.result;
+						}
+
+						$uploaderFiles.append($(tmpl.replace('#url#', src)));
+					}
+				});
+				$uploaderFiles.on("click", "li", function() {
+					$galleryImg.attr("style", this.getAttribute("style"));
+					$gallery.fadeIn(100);
+				});
+				$gallery.on("click", function() {
+					$gallery.fadeOut(100);
+				});
+			});
+
+		</script>
+
+	</body>
+</html>

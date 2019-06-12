@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/pendingorder.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/messagemanage/pendingorder.js" ></script>
+        <style>
+			div.Artical > div {
+				display: none;
+				color: #555;
+			}
+			div.Artical > div.active {
+				display: block;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div class="um-header" id="re-head">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>待办中心</h3>
+
+            </div>
+
+            <div class="um-content" style="margin-top:0;">
+
+                <ul class="um-tabbar um-tabbar-underline2 pt10 pb10 um-tabbar-switch" style="background: #fff;">
+                    <li class="active" data-tar='.to-do'>
+                        <a>待办事项</a><span></span>
+                    </li>
+                    <li data-tar='.done'>
+                        <a>已办事项</a><span></span>
+                    </li>
+                </ul>
+
+                <div class="Artical">
+
+                    <!-- 待办	 -->
+                    <div class="to-do active " id="listview">
+                        <ul class="um-list" data-bind="foreach: listTodo">
+                            <li class="um-listview-row">
+                                <a href="#" class="penda" onclick="goTododtl()">
+                                <div class="center-icon">
+                                    <img alt="" src="../../img/rent.png">
+                                </div>
+                                <div class="um-media-body2">
+                                    <h4 class="um-media-heading um-mobilebt32" data-bind="text:title"></h4>
+                                    <p class="um-mobilebthui" data-bind="text:needUserName"></p>
+                                </div> <div class="pend-stetus um-mobilebthui" data-bind="text:needStartTime"></div> </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- 已办 -->
+                    <div class="done" id="listview1">
+                        <ul class="um-list" data-bind="foreach:listDone">
+                            <li class="um-listview-row">
+                                <a href="#" class="penda" onclick="goDonedtl()">
+                                <div class="center-icon">
+                                    <img alt="" src="../../img/rent.png">
+                                </div>
+                                <div class="um-media-body2">
+                                    <h4 class="um-media-heading um-mobilebt32" data-bind="text:title"></h4>
+                                    <p class="um-mobilebthui" data-bind="text:needUserName"></p>
+                                </div> <div class="pend-stetus um-mobilebthui" data-bind="text:needStartTime"></div> </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+            $(function() {
+                /*导航更换js*/
+                $('ul.um-tabbar-switch  Li').click(function() {
+                    $(this).addClass('active').siblings('.active').removeClass('active');
+                    var tar = $(this).attr('data-tar');
+                    $(tar).addClass('active').siblings('.active').removeClass('active');
+                });
+            });
+        </script>
+
+    </body>
+</html>

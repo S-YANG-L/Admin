@@ -1,0 +1,85 @@
+$(function() {
+    var shopData = {
+        data : []
+    };
+    for (var i = 1; i < 5; i++) {
+        var j = {};
+        j.title = "10" + i;
+        j.status = ["待出租"];
+        j.imgsrc = "../../img/fj" + (i % 2 + 1) + ".jpg";
+        j.tips = "提示" + i;
+        shopData.data.push(j);
+    }
+    function shopModal() {
+        var self = this;
+        self.defaults = {
+            activeIndex : 0,
+            isAdd : false,
+            isAllcheck : false,
+            isCancle : true,
+            initData : {
+                title : "",
+                status : "",
+                imgsrc : "../../img/fj1.jpg",
+                tips : ""
+            }
+        }
+        self.listData = ko.observableArray(shopData.data);
+
+        self.line = ko.observable(self.defaults.initData);
+
+        self.tipsVisible = function() {
+            return Math.random();
+        }
+
+        self.lineClick = function(data, e) {
+            summer.openWin({
+                id : 'rentalDtl',
+                url : '/html/rentalmanage/rentalDtl.html',
+                pageParam : {
+                    name : 'test'
+                }
+            });
+        }
+        self.save = function() {
+            //alert(5);
+            var newLine = new self.line();
+            if (!newLine.title) {
+                //|| !newLine.content
+                UM.modal("alert", "亲，输入数据后才能保存哦！");
+                return;
+            }
+            if (self.defaults.isAdd) {
+                self.listData.splice(self.defaults.activeIndex, 0, newLine);
+            } else {
+                self.listData.splice(self.defaults.activeIndex, 1, newLine);
+            }
+            closeCheck();
+            self.defaults.isCancle = !self.defaults.isCancle;
+            UM.page.back();
+        }
+        self.checkAll = function() {
+            //alert(6);
+            self.defaults.isAllcheck = !self.defaults.isAllcheck;
+            $("#shopContent").find("input:checkbox").prop("checked", self.defaults.isAllcheck);
+        }
+    }
+
+
+    ko.applyBindings(new shopModal());
+
+    function openCheck() {
+        //alert(9);
+        $("#shopContent").find(".um-list-item").addClass("um-list-left-open");
+        $("#index #check").removeClass("none");
+        $("#edite_list").removeClass("ti-pencil-alt").html("取消");
+    }
+
+    function closeCheck() {
+        //alert(10);
+        $("#shopContent").find(".um-list-item").removeClass("um-list-left-open");
+        $("#index #check").addClass("none");
+        $("#edite_list").html("").addClass("ti-pencil-alt");
+    }
+
+});

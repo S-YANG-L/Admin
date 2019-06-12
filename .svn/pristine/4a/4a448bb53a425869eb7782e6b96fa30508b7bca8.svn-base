@@ -1,0 +1,39 @@
+$(function() {
+    //构造控件实例
+    var listview = UM.listview("#listview");
+    //Knockout绑定
+    var ViewModel = function() {
+    };
+    var jsonArray = [{
+        "sender" : "李四",
+        "img" : "../../img/org1.png",
+        "msgNum" : 0,
+        "lastMsg" : "2018/07/16-2019/07/16",
+        "lastTime" : "在租"
+    }, {
+        "sender" : "王五",
+        "img" : "../../img/org2.png",
+        "msgNum" : 0,
+        "lastMsg" : "2018/07/16-2019/07/16",
+        "lastTime" : "在租"
+    }, {
+        "sender" : "赵六",
+        "img" : "../../img/org3.png",
+        "msgNum" : 0,
+        "lastMsg" : "2018/03/16-2019/03/16",
+        "lastTime" : "退租"
+    }];
+    for (var i = 0,
+        len = 1; i < len; i++) {
+        jsonArray.push({
+            "sender" : "张三",
+            "img" : "../../img/b" + i % 3 + ".png",
+            "msgNum" : i % 5,
+            "lastMsg" : "2018/03/16-2019/03/16",
+            "lastTime" : "退租"
+        });
+    }
+    var viewModel = new ViewModel();
+    viewModel.data = ko.observableArray(jsonArray);
+    ko.applyBindings(viewModel);
+});

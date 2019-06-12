@@ -1,0 +1,61 @@
+summerready = function() {
+    house();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function house() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/lease/listLease",
+        "async" : "false",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId"),
+            id : summer.getStorage('houseId')
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = response.data.listLease;
+        viewModel.house = ko.observableArray(jsonArray1);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+}
+
+$(function() {
+    var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+        $gallery = $("#gallery"),
+        $galleryImg = $("#galleryImg"),
+        $uploaderInput = $("#uploaderInput"),
+        $uploaderFiles = $("#uploaderFiles");
+    $uploaderInput.on("change", function(e) {
+        var src,
+            url = window.URL || window.webkitURL || window.mozURL,
+            files = e.target.files;
+        for (var i = 0,
+            len = files.length; i < len; ++i) {
+            var file = files[i];
+
+            if (url) {
+                src = url.createObjectURL(file);
+            } else {
+                src = e.target.result;
+            }
+
+            $uploaderFiles.append($(tmpl.replace('#url#', src)));
+        }
+    });
+    $uploaderFiles.on("click", "li", function() {
+        $galleryImg.attr("style", this.getAttribute("style"));
+        $gallery.fadeIn(100);
+    });
+    $gallery.on("click", function() {
+        $gallery.fadeOut(100);
+    });
+});

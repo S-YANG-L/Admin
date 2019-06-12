@@ -1,0 +1,77 @@
+summerready = function() {
+    dasources();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function dasources() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/inspectionPlan/listInspectionPlan",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId"),
+            effectStatus : 0
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray = response.data.listInspectionPlan;
+        viewModel.data = ko.observableArray(jsonArray);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}
+
+$(function() {
+    var listview = UM.listview("#listview");
+    //添加控件方法
+    listview.on("itemClick", function(sender, args) {
+        //这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        var xjjh = viewModel.data()[args.rowIndex];
+        if (xjjh.inspection == "设备巡检") {
+            summer.setStorage('sbxj', xjjh);
+            //设备巡检
+            summer.openWin({
+                id : 'routingDtl',
+                url : 'html/schedulecontrol/routingDtl.html'
+            });
+        } else if (xjjh.inspection == "装修巡检") {
+            summer.setStorage('zxxj', xjjh);
+            //装修巡检
+            summer.openWin({
+                id : 'decorationReg',
+                url : 'html/schedulecontrol/decorationReg.html'
+            });
+        } else if (xjjh.inspection == "空关巡检") {
+            summer.setStorage('kgxj', xjjh);
+            //空关巡检
+            summer.openWin({
+                id : 'prgHouse',
+                url : 'html/schedulecontrol/prgHouse.html'
+            });
+        } else if (xjjh.inspection == "园区楼宇巡检") {
+            summer.setStorage('yqxj', xjjh);
+            //园区巡检
+            summer.openWin({
+                id : 'inspectionMana',
+                url : 'html/schedulecontrol/inspectionMana.html'
+            });
+        }
+    });
+});
+function routingrecord() {
+    summer.openWin({
+        "id" : "workorderRec",
+        "url" : "html/schedulecontrol/workorderRec.html"
+    });
+}
+
+function backClick() {
+    summer.closeWin({});
+}

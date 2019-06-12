@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/unpaid.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <link rel="stylesheet" type="text/css" href="../../css/mint.css">
+
+        <style>
+			.msg-info {
+				position: relative;
+			}
+			.msg-info .um-badge {
+				position: absolute;
+				right: -10px;
+				font-size: 12px;
+				top: 6px;
+			}
+			.msg-header {
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				background: blue;
+				border-radius: 50%;
+				text-align: center;
+				color: white;
+			}
+			.um-listview-row:active {
+				background-color: #eee;
+			}
+			.mint-cell-value {
+				width: 100%;
+				line-height: 1.5;
+			}
+			.mint-cell-wrapper {
+				padding: 0;
+				background-image: none;
+			}
+
+        </style>
+
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/propertypayment/unpaid.js" ></script>
+        <script type="text/javascript" src="../../js/vue.js"></script>
+        <script type="text/javascript" src="../../js/mint.js"></script>
+    </head>
+    <body>
+        <div class="um-frame" id="unpaid">
+            <div class="um-content">
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active">
+                        <mt-cell-swipe v-for="(item, index) in listDatas">
+                            <li class="um-listview-row" @click="itemClick(index,item)">
+                                <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                                <div class="um-list-item-media msg-info">
+                                    <!-- <img alt="" :src="item.img" width=50> -->
+                                </div>
+                                <div class="um-list-item-inner">
+                                    <div class="um-list-item-body">
+                                        <h4 class="um-media-heading fb f16 um-text-overflow">{{ item.sender }}</h4>
+                                        <p class="um-gray f14 um-text-overflow">
+                                            {{ item.lastMsg }}
+                                        </p>
+                                    </div>
+                                    <div class="pr10">
+                                        <span class="um-gray f12">{{ item.lastTime }}</span>
+                                    </div>
+                                </div> </a>
+                            </li>
+                        </mt-cell-swipe>
+                    </ul>
+                    </mt-loadmore>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            var jsonArray = [{
+                "sender" : "北京亦园A小区1单元1栋101",
+                "img" : "../../img/org1.png",
+                "msgNum" : 0,
+                "lastMsg" : "张三",
+                "lastTime" : "未清缴"
+            }, {
+                "sender" : "北京亦园A小区1单元1栋102",
+                "img" : "../../img/org2.png",
+                "msgNum" : 4,
+                "lastMsg" : "李四",
+                "lastTime" : "未清缴"
+            }, {
+                "sender" : "北京亦园A小区1单元1栋103",
+                "img" : "../../img/org3.png",
+                "msgNum" : 5,
+                "lastMsg" : "王五",
+                "lastTime" : "未清缴"
+            }];
+            // 构造控件Vue实例
+            var listview = new Vue({
+                el : '#listview',
+                data : {
+                    listDatas : [],
+                    timeOutEvent : 0
+                },
+                mounted : function() {
+                    // 组件挂载后执行...
+                    this.listDatas = jsonArray;
+                },
+                methods : {
+                    /* 在这里定义方法 */
+                    itemClick : function(index, item) {
+                        // 这里编辑单击列表项逻辑
+                        summer.openWin({
+                            id : 'unpaidInfo',
+                            url : '/html/propertypayment/unpaidInfo.html',
+                            pageParam : {
+                                sender : item.sender,
+                                img : item.img
+                            }
+                        });
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

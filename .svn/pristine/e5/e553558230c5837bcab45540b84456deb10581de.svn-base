@@ -1,0 +1,146 @@
+<!-- 待删除文件 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/index.css">
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" id="aptInfo">
+
+            <div class="um-content">
+                <ul class="um-list">
+                    <p class="like">
+                        房主
+                    </p>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                姓名
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="liushihao">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                证件号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="3*****************">
+                            </div>
+                        </div>
+                    </li>
+                    <p class="like">
+                        租客
+                    </p>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                姓名
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="李四">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                身份证号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="3*****************">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                姓名
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="王五">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                身份证号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="3*****************">
+                            </div>
+                        </div>
+                    </li>
+                    <p class="like">
+                        房屋费用
+                    </p>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                水费余额
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="number" class="form-control" value="30.00">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                电费余额
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="number" class="form-control" value="-30.00">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                暖气费余额
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="number" class="form-control" value="00.00">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                宽带费余额
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="number" class="form-control" value="500.00">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                物业费余额
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" value="足额">
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </body>
+</html>

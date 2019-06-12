@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" type="text/css" href="../css/islider.css">
+        <style>
+			.iSlider-wrapper {
+				height: 150px;
+			}
+        </style>
+        <script src="../js/reset.js" ></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../js/islider.js"></script>
+        <script src="../js/main.js" ></script>
+    </head>
+    <body>
+        <div class="um-frame" id="main">
+            <div class="um-header" >
+                <h3>和物管</h3>
+            </div>
+            <div  class="um-content">
+                <div class="um-row">
+                    <img src="../img/banner.png">
+                </div>
+                <!-- 九宫格 -->
+                <div class="um-gridcontent">
+                    <ul >
+                        <li>
+                            <a href="#" class="um-circle um-black" onclick="attendance()"> <img src="../img/um_attendanceicon.png" class="um-img-responsive">
+                            <div class="um-messagebt">
+                                考勤管理
+                            </div> </a>
+                        </li>
+                        <li>
+                            <a href="#" class="um-circle um-black" onclick="house()"> <img src="../img/um_bulidicon.png" class="um-img-responsive">
+                            <div class="um-messagebt">
+                                房屋管理
+                            </div> </a>
+                        </li>
+                        <li>
+                            <a href="#" class="um-circle um-black" onclick="repair()"> <img src="../img/um_billicon.png" class="um-img-responsive">
+                            <div class="um-messagebt">
+                                工单管理
+                            </div></a>
+                        </li>
+                        <li>
+                            <a href="#" class="um-circle um-black" onclick="customers()"> <img src="../img/um_payicon.png" class="um-img-responsive">
+                            <div class="um-messagebt">
+                                物业缴费
+                            </div> </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="um-circle um-black" onclick="rental()"> <img src="../img/um_leaseicon.png" class="um-img-responsive">
+                            <div class="um-messagebt">
+                                租赁管理
+                            </div> </a>
+                        </li>
+                        <li>
+                            <a href="#" class="um-circle um-black" onclick="schedule()"> <img src="../img/um-engineeringicon.png" class="um-img-responsive">
+                            <div class="um-messagebt">
+                                工程管理
+                            </div> </a>
+                        </li>
+                        <!--<li>
+                        <a href="#" class="um-circle um-black" onclick="accesscontrol()"> <img src="../img/access.png" class="um-img-responsive">
+                        <div class="um-messagebt">
+                        智能门禁
+                        </div> </a>
+                        </li>-->
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

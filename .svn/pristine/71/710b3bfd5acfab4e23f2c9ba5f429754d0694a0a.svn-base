@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-page" id="permissions">
+            <div class="um-header" >
+                <a href="../../index.html" class="um-back"> 返回</a>
+                <h3>权限设置</h3>
+                <!-- <a href="#" class="um-header-right ti-home"></a> -->
+            </div>
+            <div class="um-content">
+                <div class="um-input-search">
+                    <input type="search" class="form-control" placeholder="search">
+                    <span class="um-input-cancle">取消</span>
+                </div>
+
+                <div class="um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach:data">
+                        <li class="um-listview-row">
+                            <a class="um-list-item um-swipe-action um-no-icon">
+                            <div class="um-swipe-btns">
+                                <span class="um-swipe-btn um-delete">删除</span>
+                            </div>
+                            <div class="um-list-item-media">
+                                <label class="um-check-inline um-list-left-icon">
+                                    <input name="um-checkbox-inline" type="checkbox">
+                                    <span class="um-icon-checkbox um-css3-vc"></span> </label>
+                            </div>
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-body" style="padding-right:0">
+                                    <div class="clearfix f16">
+                                        <div class="um-xs-6 tl um-text-overflow">
+                                            <span class="fb" data-bind="text:fjNo"></span>
+                                        </div>
+                                        <div class="um-xs-6 tr um-text-overflow um-red">
+                                            <span  data-bind="text:status"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="clearfix mt5 f12">
+                                        <div class="um-xs-6 tl um-text-overflow">
+                                            <span data-bind="text:fzName" class="um-gray"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../../js/accesscontrol/permissions.js"></script>
+</html>

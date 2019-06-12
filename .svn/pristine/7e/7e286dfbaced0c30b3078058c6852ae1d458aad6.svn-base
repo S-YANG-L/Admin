@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="./css/iuapmobile.um.css">
+        <link rel="stylesheet" href="./css/font-icons.css">
+        <script src="./js/reset.js" ></script>
+        <script src="./js/summer.js" ></script>
+        <script src="./js/jquery.min.js" ></script>
+        <script src="./js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src='./js/index.js'></script>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div  id='header'></div>
+            <div class="um-content" style="margin-top:0;">
+
+            </div>
+            <div class="um-footer" id='footer'>
+                <div class="um-footerbar" id='nav'>
+                    <a href="#" class="um-footerbar-item home active" onclick="openTab('main','智慧物业')"> <i class="homeicon"></i>
+                    <div class="f12 lh1">
+                        首页
+                    </div> </a>
+                    <a href="#" class="um-footerbar-item message" onclick="openTab('message','消息中心')"> <i class="messageicon"></i>
+                    <div class="f12 lh1">
+                        消息中心
+                    </div> </a>
+                    <a href="#" class="um-footerbar-item connect" onclick="openTab('mail_list','通讯录')"> <i class="mailicon"></i>
+                    <div class="f12 lh1">
+                        通讯录
+                    </div> </a>
+                    <a href="#" class="um-footerbar-item my" onclick="openTab('my','我的')"> <i class="myicon"></i>
+                    <div class="f12 lh1">
+                        我的
+                    </div> </a>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+$(function() {
+    //构造控件实例
+    var listview = UM.listview("#listview");
+    //Knockout绑定
+    var ViewModel = function() {
+    };
+var jsonArray = [{
+		"img" : "../../img/fw3.png",
+		"title" : "前程锦苑社区秀园小区1号楼4单元3002",
+		"detail" : "60m²|2室",
+		"position":"距8号线育知路860米",
+	}, {
+		"img" : "../../img/fw3.png",
+		"title" : "前程锦苑社区秀园小区8号楼2单元2102",
+		"detail" : "115m²|3室",
+		"position":"距8号线育知路860米",
+	}, {
+		"img" : "../../img/fw3.png",
+		"title" : "前程锦苑社区静园小区6号楼1单元1001",
+		"detail" : "60m²|2室",
+		"position":"距8号线育知路860米",
+	}, {
+		"img" : "../../img/fw3.png",
+		"title" : "前程锦苑社区静园小区9号楼2单元1501",
+		"detail" : "90m²|3室",
+		"position":"距8号线育知路860米",
+	}];
+
+    var viewModel = new ViewModel();
+    viewModel.data = ko.observableArray(jsonArray);
+    ko.applyBindings(viewModel);
+
+
+    listview.on("itemClick", function(sender, args) {
+        //这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        //alert("您点击了列表第" + (args.rowIndex + 1) + "行！");
+        summer.openWin({
+            id : 'buildInfo',
+            url : '/html/buildingmanage/buildInfo.html',
+            pageParam : {
+                name : 'test'
+            }
+        });
+    });
+
+});

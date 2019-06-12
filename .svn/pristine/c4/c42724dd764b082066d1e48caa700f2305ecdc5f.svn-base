@@ -1,0 +1,168 @@
+var amgId = null;
+summerready = function() {
+    alert(summer.getStorage('houseId'))
+    alert(summer.getStorage('apartmentPhoto'))
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://106.74.146.162:9080/document/uploadfile/getfileinfo",
+        "async" : "false",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            batchno : summer.getStorage('apartmentPhoto')
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = $summer.strToJson(response.data.message);
+        var tmpl = '<li id="' + amgId + '" class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery"),
+            $galleryImg = $("#galleryImg"),
+            $uploaderInput = $("#uploaderInput"),
+            $uploaderFiles = $("#uploaderFiles");
+        for ( i = 0; i < jsonArray1.length; i++) {
+            var imgPathWS = jsonArray1[i].filePath;
+            amgId = jsonArray1[i].fileId;
+            $uploaderFiles.append($(tmpl.replace('#url#', imgPathWS)));
+        }
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+    house();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function house() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/lease/listLease",
+        "async" : "false",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId"),
+            id : summer.getStorage('houseId')
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = response.data.listLease;
+        viewModel.house = ko.observableArray(jsonArray1);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+}
+
+function backClick() {
+    summer.closeWin({});
+}
+
+function openPhotoAlbum() {
+    var params = ["android.permission.READ_EXTERNAL_STORAGE"];
+    commonFunc(params, openPhotoAlbum_common);
+}
+
+function commonFunc(params, common) {
+    if ($summer.os == "android") {
+        summer.getPermission(params, function(response) {//成功回调
+            common();
+        }, function(response) {//失败回调
+            alert(response);
+        });
+    } else {
+        common();
+    }
+}
+
+var imgPathes;
+//打开系统相册，选择多张图片
+var openPhotoAlbum_common = function() {
+    summer.openPhotoAlbum({
+        type : "multiple", //支持选多张图片
+        maxCount : 9,
+        callback : function(args) {
+            imgPathes = args.imgPaths;
+            var tmpl = '<li id="' + amgId + '" class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+                $gallery = $("#gallery"),
+                $galleryImg = $("#galleryImg"),
+                $uploaderInput = $("#uploaderInput"),
+                $uploaderFiles = $("#uploaderFiles");
+            for ( i = 0; i < args.imgPaths.length; i++) {
+                var imgPathWS = args.imgPaths[i].imgPath;
+                $uploaderFiles.append($(tmpl.replace('#url#', imgPathWS)));
+            }
+            $uploaderFiles.on("click", "li", function() {
+                $galleryImg.attr("style", this.getAttribute("style"));
+                $gallery.fadeIn(100);
+            });
+            $gallery.on("click", function() {
+                $gallery.fadeOut(100);
+            });
+            //删除图片
+            $(".weui-gallery__del").click(function() {
+                alert(amgId);
+                alert("删除")
+                delet(amgId)
+                //$uploaderFiles.find("li").eq(index).remove();
+            });
+        }
+    });
+}
+function multiUploadCallback(args) {
+    $summer.alert(args);
+    $summer.alert("multiUpload,成功回调:" + JSON.stringify(args));
+}
+
+function multiUploadErrCallback(args) {
+    $summer.alert(args);
+    $summer.alert("multiUpload,失败回调:" + args.error);
+}
+
+function submit() {
+    //imagePaths为数组
+    for ( i = 0; i < imgPathes.length; i++) {
+        var imgPathWS = imgPathes[i].imgPath;
+        //多文件上传，5秒超时
+        summer.multiUpload({
+            fileArray : [{//文件列表，数组
+                fileURL : imgPathWS, //需要上传的文件路径
+                type : "image/jpeg", //上传文件的类型 > 例：图片为"image/jpeg"
+                name : "imgs" //后台取图片的Key
+            }],
+            params : {
+                token : summer.getAppStorage("tokenEntity").token,
+                batchno : summer.getStorage('apartmentPhoto')
+            }, //上传参数
+            //headers : {},
+            //SERVER : "http://106.74.146.162:9080/document/uploadfile/getfileinfo", //服务器地址
+            SERVER : "http://106.74.146.162:9080/document/uploadfile/uploadfilestoapp", //服务器地址
+            timeout : 5
+        }, "multiUploadCallback(args)", "multiUploadErrCallback(args)");
+    }
+}
+
+function delet(amgId) {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://106.74.146.162:9080/document/uploadfile/deleteuploadimage",
+        "async" : "false",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            key : '201905146000000258'
+        },
+    }, function(response) {//成功回调
+        summer.toast({
+            "msg" : "删除成功!"
+        })
+    }, function(response) {//失败回调
+        alert("请联系管理员！");
+    });
+}

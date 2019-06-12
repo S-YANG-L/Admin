@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" id="access">
+            <div class="um-header" >
+                <a href="permissions.html" class="um-back"> 返回</a>
+                <h3>授权开门</h3>
+            </div>
+
+            <div class="um-content">
+                <ul class="um-list">
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-body">
+                                房号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input class="form-control" value="A区1栋1单元1层101" disabled>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-body">
+                                房主
+                            </div>
+                            <div class="um-list-item-right">
+                                <input class="form-control" value="张三" disabled>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-body">
+                                授权时间
+                            </div>
+                            <div class="um-list-item-right">
+                                <input class="form-control" value="2019/3/15" disabled>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="um-list-item">
+                            <div class="um-list-item-inner">
+                                <div class="um-list-item-left">
+                                    授权用户
+                                </div>
+                                <div class="um-list-item-right">
+                                    <select class="f16 form-control" style="height: 35px;width: 100%;background: white">
+                                        <option>李四</option>
+                                        <option>王五</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-body">
+                                车牌号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input class="form-control" value="京JP6225" disabled>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-body">
+                                身份证号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input class="form-control" value="61062919950405855" disabled>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="um-row">
+                    <button class="um-btn um-no-brs">
+                        授权
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

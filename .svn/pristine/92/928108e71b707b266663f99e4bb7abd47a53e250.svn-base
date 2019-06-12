@@ -1,0 +1,165 @@
+summerready = function() {
+    //周期的开始
+    console.log(123);
+};
+$(function() {
+    $(".um-input-clear.ti-close").click(function() {
+        $(this).prev("input").val("");
+    })
+    $(".um-input-clear.ti-eye").click(function() {
+        var $pre_input = $(this).prev("input");
+        ('password' == $pre_input.attr('type')) ? $pre_input.attr('type', 'text') : $pre_input.attr('type', 'password');
+        $(this).toggleClass('eye');
+    })
+    $(".um-btn").click(function() {
+        if ($summer.byId("name").value == "") {
+            UM.toast({
+                "title" : "友情提示：请输入用户名！",
+                "text" : "3秒后消失",
+                "duration" : 3000
+            });
+            return false;
+        } else if ($summer.byId("pass").value == "") {
+            UM.toast({
+                "title" : "友情提示：请输入密码！",
+                "text" : "3秒后消失",
+                "duration" : 3000
+            });
+            return false;
+        } else {
+            var params = ["android.permission.READ_PHONE_STATE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"];
+            summer.getPermission(params, function(args) {
+                alert(args);
+                //成功返回OK
+                datesourse();
+            }, function(args) {
+                alert(args);
+                //失败返回illegal access
+            })
+            datesourse();
+        }
+    })
+    function datesourse() {
+        /*$service.get("http://10.6.162.148:3030/user_war_exploded/yongyou/getone",  {
+        "Content-Type":"application/x-www-form-urlencoded",
+        "User-Agent":"imgfornote",
+        "Content-Type" : "application/json"
+        }, function(response) {
+        alert(response.status);
+        alert($summer.strToJson(response.data));
+        }, function(response) {
+        alert(response.error);
+        });
+        */
+        /*$service.get({
+        "url" : "http://10.6.162.148:3030/user_war_exploded/yongyou/getone",//请求url地址
+        "callback" : myCallBack()//请求成功后回调js方法
+        });
+        */
+        /*$.ajax({
+        type : "get",
+        url : "http://10.6.162.148:3030/user_war_exploded/yongyou/getone",
+        param : {},
+        }, function(response){ //成功回调
+        alert(response.data);
+        }, function(response){ //失败回调
+        alert(response.data);
+        alert(response.error);
+        });
+        */
+        /*$service.post({
+        "url" : "http://172.20.10.2:3030/user_war_exploded/yongyou/getone",//必选参数，get请求的URL
+        "callback" : function (sender,args){
+        //返回结果类型为对象，键值为resule的结果类型为json数组格式的字符串类型。
+        var str=args.result;
+        $alert(str);
+        },
+        "header":{
+        "Content-Type":"application/x-www-form-urlencoded",//可选参数，方便开发者设置请求的header
+        "User-Agent":"imgfornote"
+        },
+        "timeout" : "5"
+        });
+        */
+        /*summer.ajax({
+        "header":{"Content-Type" : "application/json"},//可选参数，方便开发者设置请求的header
+        "type":"get",//请求方式
+        "url":"http://10.6.162.148:3030/user_war_exploded/yongyou/getone",//url地址
+        "param":{},//可选参数，post请求的要写入的条件数据，须为json对象
+        }, function(response){//成功回调
+        alert(response.data);
+        }, function(response){ //失败回调
+        alert(response.data);
+        alert(response.error);
+        });
+        */
+        //http://172.20.10.2:3030/user_war_exploded/yongyou/getone  visitor
+        //http://172.20.10.2:3030/user_war_exploded/yongyou/getone
+
+        //正确的
+        //summer.ajax({
+        //   type : 'get',
+        //   url : 'http://172.20.10.2:3030/user_war_exploded/yongyou/getone',
+        //   param : {
+        //   },
+        //  header : {
+        //      Authorization : "OAuth2: token",
+        //      "Content-Type" : "application/json"
+        //   }
+        // }, function(response) {
+        //     try {
+        //        response.data = JSON.parse(response.data);
+        //        console.log(000);
+        //        var user = response.data.cName;
+        //      var pass = response.data.remark;
+        //      if ($summer.byId("name").value == user && $summer.byId("pass").value == pass) {
+        //$alert("登陆成功！");
+        //           openNewWin(user, pass);
+        //           return true;
+        //       } else {
+        //          UM.toast({
+        //              "title" : "友情提示：用户名或密码错误！",
+        //              "text" : "3秒后消失",
+        //               "duration" : 3000
+        //           });
+        //       }
+        //   } catch (e) {
+        //       alert("JSON parsing error");
+        //   }
+        //}, function(response) {
+        //    alert(response.status);
+        //alert(response.error);
+        // });
+        openNewWin();
+    }
+
+    // function openNewWin(user, pass) {
+    //设置缓存 用户名
+    //    summer.setStorage('user1', user)
+    //设置缓存 密码
+    //     summer.setStorage('pass1', pass)
+    //
+    //     summer.openWin({
+    //         url : "index.html"
+    //     });
+    // }
+    function openNewWin() {
+        //设置缓存 用户名
+        summer.setStorage('user1', 111)
+        //设置缓存 密码
+        summer.setStorage('pass1', 222)
+        //
+        summer.openWin({
+            url : "index.html"
+        });
+    }
+
+
+    $(".tr").click(function() {
+        UM.toast({
+            "title" : "友情提示：敬请期待！",
+            "text" : "3秒后消失",
+            "duration" : 3000
+        });
+    })
+});

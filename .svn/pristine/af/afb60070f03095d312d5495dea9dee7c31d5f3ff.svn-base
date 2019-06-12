@@ -1,0 +1,21 @@
+﻿function notice() {
+    summer.openWin({
+        id : 'repairinfodetail',
+        url : '/html/memomange/memorecord.html'
+    });
+
+}
+
+function tickling() {
+    summer.openWin({
+        id : '',
+        url : ''
+    });
+}
+
+function deal() {
+    summer.openWin({
+        id : 'repairinfodetail',
+        url : '/html/messagemanage/pendingorder.html'
+    });
+}

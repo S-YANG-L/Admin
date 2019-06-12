@@ -1,0 +1,55 @@
+//房屋管理
+function house() {
+    summer.openWin({
+        id : 'customers',
+        url : 'html/buildingmanage/village.html',
+    });
+}
+
+//物业缴费
+function customers() {
+    summer.openWin({
+        id : 'customers',
+        url : 'html/customers/customerList.html',
+    });
+}
+
+//工单管理
+function repair() {
+    summer.openWin({
+        id : 'repair',
+        url : 'html/repairmanage/repairman.html',
+    });
+}
+
+//考勤管理
+function attendance() {
+    summer.openWin({
+        id : 'attendance_check',
+        url : 'html/attendance/attendance_check.html',
+    });
+}
+
+//租赁管理
+function rental() {
+    summer.openWin({
+        id : 'new_page1',
+        url : 'html/rentalmanage/propertyInfo.html',
+    });
+}
+
+//功程管理
+function schedule() {
+    summer.openWin({
+        id : 'workorder',
+        url : 'html/schedulecontrol/workorder.html',
+    });
+}
+
+function accesscontrol() {
+    alert(1);
+    summer.openWin({
+        "id" : "acc_customer",
+        "url" : "html/accesscontrol/acc_customer.html"
+    });
+}

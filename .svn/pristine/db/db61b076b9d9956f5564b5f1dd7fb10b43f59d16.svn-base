@@ -1,0 +1,62 @@
+summerready = function() {
+    dasources();
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();
+function dasources() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/inspectionPlan/listDecorationReg",
+        "param" : {
+            tenantId : summer.getAppStorage('tenantId'),
+            parentId : summer.getStorage('zxxj').id
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray = response.data.listDecorationReg;
+        var jsonArray2 = [{
+            frequency : summer.getStorage('zxxj').frequency,
+            inspectionPerson : summer.getStorage('zxxj').inspectionPerson,
+            inspection : summer.getStorage('zxxj').inspection,
+            inspectionStartTime : summer.getStorage('zxxj').inspectionStartTime,
+            inspectionEndTime : summer.getStorage('zxxj').inspectionEndTime
+        }]
+        viewModel.data = ko.observableArray(jsonArray);
+        viewModel.zxxj = ko.observableArray(jsonArray2);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}
+
+function publish() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : "http://" + summer.getAppStorage('url') + "/cmcc/inspectionPlan/saveInspectionPlan",
+        "param" : {
+            id : summer.getStorage('zxxj').id,
+            effectStatus : "1"
+        },
+    }, function(response) {//成功回调
+        open();
+        summer.rmStorage('zxxj');
+    }, function(response) {//失败回调
+        alert("参数有误！");
+    });
+}
+
+function open() {
+    summer.openWin({
+        id : 'workorder',
+        url : 'html/schedulecontrol/workorder.html'
+    });
+}

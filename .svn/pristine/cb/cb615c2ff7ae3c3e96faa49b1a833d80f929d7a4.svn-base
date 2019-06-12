@@ -1,0 +1,75 @@
+summerready = function() {
+    //summer.setAppStorage("url", "http://106.74.146.162:9080/cmcc")//远程
+    summer.setAppStorage("url", "http://192.168.43.219:9090/cmcc")//魅族
+    //summer.setAppStorage("url", "http://10.6.216.147:9090/cmcc")//123456
+}
+function login() {
+    var account = $("#uphone").val();
+    var upass = $("#upass").val();
+    if ("" == account || "" == upass) {
+        //		alert("请输入手机号或密码");
+        UM.toast({
+            text : '请输入账号或密码'
+        });
+    } else {
+        summer.post(summer.getAppStorage("url") + "/CustodianLongin/gologin", {
+            "token" : summer.getAppStorage("tokenEntity"), //可以为空
+            "account" : account,
+            "password" : upass,
+        }, {
+            Authorization : "OAuth2:token"
+        }, function(response) {
+            if ("Token已过期，请重新登录" == response.data) {
+                UM.toast({
+                    text : '登录已失效，请重新登录'
+                });
+                summer.openWin({
+                    "id" : "signin",
+                    "url" : "/html/signin.html"
+                });
+            }
+            response.data = JSON.parse(response.data);
+            var code = response.data.code
+            if (200 == code) {
+                var user = response.data.user;
+                var userId = user.id;
+                //ID
+                var userName = user.name;
+                //姓名
+                var loginId = user.loginId;
+                //登录名
+                var tenantid = user.tenantid;
+                //租户id
+                var password = user.password;
+                //密码
+                var tokenEntity = response.data.tokenEntity;
+                //        	var jsonStr = JSON.stringify(tokenEntity);
+                //       	alert("jsonStr=="+jsonStr);
+                //        	alert(userId+","+userName+","+userPhone+","+userPassword);
+                //保存到localServer
+                //       	summer.setStorage("tokenEntity",tokenEntity);
+                summer.setAppStorage("userId", userId);
+                summer.setAppStorage("userName", userName);
+                //summer.setAppStorage("userPhone",userPhone);
+                summer.setAppStorage("tenantId", tenantid);
+                //        	summer.setAppStorage("userPassword",userPassword);
+                summer.setAppStorage("tokenEntity", tokenEntity);
+                //alert( summer.getAppStorage("userId"));
+                summer.openWin({
+                    "id" : "index",
+                    "url" : "index.html"
+                });
+            }
+            if (201 == code) {
+                //alert("用户名或密码错误");
+                UM.toast({
+                    text : '账号或密码错误'
+                });
+            }
+        }, function(response) {
+            summer.toast({
+                "msg" : "请联系管理员!"
+            })
+        });
+    }
+}

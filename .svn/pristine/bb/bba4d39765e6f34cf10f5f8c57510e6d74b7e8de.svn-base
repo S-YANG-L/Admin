@@ -1,0 +1,35 @@
+function btn0_click() {
+    summer.setAppStorage("tokenEntity", "");
+    summer.openWin({
+        url : '/html/signin.html'
+    });
+}
+
+//判断是否进行修改资料
+function UPmaterial() {
+    UM.confirm({
+        title : '警告',
+        text : '您正在进行修改密码操作,是否继续',
+        btnText : ["取消", "确定"],
+        overlay : true,
+        ok : function() {
+            goUPmaterial();
+        },
+        cancle : function() {
+            //$this.css('backgroundColor', '#007aff');
+        }
+    });
+}
+
+function goUPmaterial() {
+    summer.openWin({
+        url : '/html/newMaterial.html'
+    });
+}
+
+function banner() {
+    summer.openWin({
+        "id" : "banner",
+        "url" : "html/banner.html"
+    });
+}

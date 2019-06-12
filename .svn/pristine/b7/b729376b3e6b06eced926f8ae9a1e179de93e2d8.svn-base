@@ -1,0 +1,383 @@
+function outwork_report() {
+	summer.openWin({
+		"id" : "outwork_report",
+		"url" : "html/outwork_report.html"
+	});
+}
+
+function goaddAll() {
+	summer.openWin({
+		"id" : "addall",
+		"url" : "html/attendance/attendance_addall.html"
+	});
+}
+
+$(function() {
+	$('ul.um-tabbar-switch  Li').click(function() {
+		$(this).addClass('active').siblings('.active').removeClass('active');
+		var tar = $(this).attr('data-tar');
+		$(tar).addClass('active').siblings('.active').removeClass('active');
+	});
+
+});
+
+//页面加载事件
+summerready = function() {
+	//查询是否可以内勤打卡
+	summer.ajax({
+		type : 'post',
+		url : summer.getAppStorage('url')+'/checkingin/judgeClockIn', //172.20.10.3
+		param : {
+			"token":summer.getAppStorage("tokenEntity").token,
+			"userName" : summer.getAppStorage("userName"),
+			"checkLocation" : summer.getAppStorage("checkLocation"),
+			"userId" : summer.getAppStorage("userId"),
+			"longitude" : summer.getAppStorage("longitude"), //经度
+			"latitude" : summer.getAppStorage("latitude")//维度
+		},
+		header : {
+			Authorization : "OAuth2: token",
+			"Content-Type" : "application/json"
+		}
+	}, function(response) {
+		response.data = JSON.parse(response.data);
+		var location = response.data.location//打卡地址
+		var state = response.data.state//是否可以打卡
+		if (state == 1) {//可以打卡
+			document.getElementById("btn_submit").removeAttribute("disabled");
+			document.getElementById("checkid").setAttribute("class", "btn-attendance");
+			//显示打卡按钮
+			document.getElementById("checkLocation").innerHTML = location;
+			//设置当前打卡的位置
+		}else{
+			document.getElementById("checkid").setAttribute("class", "btn-attendance2");
+		}
+
+	});
+
+	//显示今天的打卡信息
+	onlyOneDay();
+
+}
+//点击签到
+function checkingIn(t) {
+	summer.ajax({
+		type : 'post',
+		url : summer.getAppStorage('url')+'/checkingin/interiorClockIn',
+		param : {
+			"token":summer.getAppStorage("tokenEntity").token,
+			"staffName" : summer.getAppStorage("userName"),
+			"staffId" : summer.getAppStorage("userId"),
+			"tenantId" : summer.getAppStorage("tenantId"),
+			"location" : summer.getAppStorage("checkLocation")
+		},
+		header : {
+			Authorization : "OAuth2: token",
+			"Content-Type" : "application/json"
+		}
+	}, function(response) {
+		response.data = JSON.parse(response.data);
+		var state = response.data.state
+		if (state != "打卡失败请联系管理员") {
+			UM.toast({
+				    text: state
+				});
+			//打卡成功提示
+			//隐藏上次无打卡记录div
+			document.getElementById("checkStateDiv").style.display = "none";
+			//显示打卡信息
+			onlyOneDay();
+			//设置按钮失效时间
+			time(5);
+		} else {
+			UM.toast({
+				    text: state
+				});
+			//打卡失败提示
+		}
+	});
+}
+
+//按钮失效时间
+function time(wait) {
+	if (wait-- == 0) {
+		document.getElementById("btn_submit").removeAttribute("disabled");
+		document.getElementById("checkid").setAttribute("class", "btn-attendance");
+		wait = 5;
+	} else {
+		document.getElementById("btn_submit").setAttribute("disabled", true);
+		document.getElementById("checkid").setAttribute("class", "btn-attendance2");
+		setTimeout(function() {
+			time(wait)
+		}, 1000)
+	}
+}
+
+//显示今天的打卡信息
+function onlyOneDay() {
+	//alert(11);
+	summer.ajax({
+		type : 'post',
+		url : summer.getAppStorage('url')+'/checkingin/onlyClockIn',
+		param : {
+			"token":summer.getAppStorage("tokenEntity").token,
+			"staffId" : summer.getAppStorage("userId"),
+			"tenantId" : summer.getAppStorage("tenantId"),
+		},
+		header : {
+			Authorization : "OAuth2: token",
+			"Content-Type" : "application/json"
+		}
+	}, function(response) {
+		response.data = JSON.parse(response.data);
+		var restate = response.data.state;
+		if (restate == 1) {//有打卡记录
+			var clockInTime = response.data.clock.clockInTime//打卡次数
+			var checkingInDate = response.data.clock.checkingInDate//打卡日期
+			var officeHours = response.data.clock.officeHours//上班时间
+			var closingTime = response.data.clock.closingTime//下班时间
+			var state = response.data.clock.state//迟到状态
+			var leaveEarly = response.data.clock.leaveEarly//早退状态
+			var location = response.data.clock.location//打卡地点
+			var outworker = response.data.clock.outworker//是否外勤打卡
+			if (outworker == 2) {//外勤打卡
+				document.getElementById("checkOutWorkDiv").style.display = ""
+			}
+			if (clockInTime == 1) {//第1次打卡 加入上班打卡的信息
+				//显示上班打卡div
+				document.getElementById("checkTimeUpDiv").style.display = ""
+				document.getElementById("checkDataUp").innerHTML = checkingInDate;
+				document.getElementById("checkTimeUp").innerHTML = officeHours;
+				document.getElementById("checkLOUp").innerHTML = location;
+				if (state == 0) {
+					document.getElementById("checkStateUp").innerHTML = "迟到";
+				}
+				if (state == 1) {
+					document.getElementById("checkStateUp").innerHTML = "正常";
+				}
+				if (state == 2) {
+					document.getElementById("checkStateUp").innerHTML = "未打卡";
+				}
+			}
+			if (clockInTime == 2) {//上下班都打卡
+				//显示上班打卡div
+				document.getElementById("checkTimeUpDiv").style.display = ""
+				document.getElementById("checkDataUp").innerHTML = checkingInDate;
+				document.getElementById("checkTimeUp").innerHTML = officeHours;
+				document.getElementById("checkLOUp").innerHTML = location;
+				if (state == 0) {
+					document.getElementById("checkStateUp").innerHTML = "迟到";
+				}
+				if (state == 1) {
+					document.getElementById("checkStateUp").innerHTML = "正常";
+				}
+				if (state == 2) {
+					document.getElementById("checkStateUp").innerHTML = "未打卡";
+				}
+				//显示下班div
+				document.getElementById("checkTimeDiv").style.display = ""
+				document.getElementById("checkData").innerHTML = checkingInDate;
+				document.getElementById("checkTime").innerHTML = closingTime;
+				document.getElementById("checkLO").innerHTML = location;
+				if (leaveEarly == 0) {
+					document.getElementById("checkStateON").innerHTML = "正常";
+				}
+				if (leaveEarly == 1) {
+					document.getElementById("checkStateON").innerHTML = "早退";
+				}
+			}
+		} else {//显示上层提示
+			document.getElementById("checkStateDiv").style.display = ""
+			document.getElementById("checkState").innerHTML = restate;
+		}
+
+	});
+}
+
+//异常考勤
+function abnormalCheckingIn(t) {
+	$("#ul").empty();
+	summer.ajax({
+		type : 'post',
+		url : summer.getAppStorage('url')+'/checkingin/getabnormal',
+		param : {
+			"token":summer.getAppStorage("tokenEntity").token,
+			"staffName" : summer.getAppStorage("userName"),
+			"staffId" : summer.getAppStorage("userId"),
+			"tenantId" : summer.getAppStorage("tenantId"),
+		},
+		header : {
+			Authorization : "OAuth2: token",
+			"Content-Type" : "application/json"
+		}
+	}, function(response) {
+		response.data = JSON.parse(response.data);
+		var state = response.data.state
+		if (state == "200") {
+			var abnormalList = response.data.abnormal
+			for (var i = 0; i < abnormalList.length; i++) {
+				var abnormal = abnormalList[i];
+				//拼接列表
+				var $li = $(
+					'<li style="overflow:hidden;">'
+						+'<label class="um-check-group-item" style="width:75%;float:left;border:none;">'
+							+'<input name="um-checkbox" type="checkbox" value="' + abnormal.id + '">'
+							+'<span class="um-icon-checkbox um-css3-vc" style="left: 10px;display: block;color: #00a1ea;"></span>'
+							+'<div class="attendance-li">'
+								+'<input type="hidden" id="abnormalId' + i + '" value="' + abnormal.id +'" />'
+								+'<div class="attendance-li-left">'
+									+'<p class="list-hui">'
+										+'<span id="checkingInDate' + i + '">'+abnormal.checkingInDate+'</span>'
+									+'</p>'
+									+'<p class="list-hui">'
+										+'<span id="officeHours' + i + '">'+abnormal.officeHours+'</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'
+										+'<span id="state' + i + '">'+abnormal.state+'</span>'
+									+'</p>'
+									+'<p class="list-hui">'
+										+'<span id="closingTime' + i + '">'+abnormal.closingTime+'</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'
+										+'<span id="leaveEarly' + i + '">'+abnormal.leaveEarly+'</span>'
+									+'</p>'
+								+'</div>'
+							+'</div>'
+						+'</label>'
+						+'<div class="attendance-li-right2">'
+							+'<a href="javascript:;" id="supplement' + i + '" onclick="checkingInSupplement(this,' + i + ')" style="z-index:999;">'+abnormal.auditState+'</a>'
+						+'</div>'
+				   +'</li>'
+				);
+				$li.appendTo($("#ul"));
+
+				if (abnormal.auditState == "待审批") {
+					//document.getElementById("supplement" + i).setAttribute("disabled", true);
+					document.getElementById("supplement" + i).removeAttribute("onclick");
+				} else {
+					//document.getElementById("supplement" + i).removeAttribute("disabled");
+				}
+			};
+		}
+	});
+}
+
+//考勤补录
+function checkingInSupplement(t, i) {
+	var clockId = $("#abnormalId" + i).val();
+	//var abnormalState = $("#abnormalState" + i).text();
+	//var abnormalDate = $("#abnormalDate" + i).text();
+	summer.ajax({
+		type : 'post',
+		url : summer.getAppStorage('url')+'/checkingin/disposeonlyabnormal',
+		param : {
+			"token":summer.getAppStorage("tokenEntity").token,
+			"name" : summer.getAppStorage("userName"),
+			"staffId" : summer.getAppStorage("userId"),
+			"tenantId" : summer.getAppStorage("tenantId"),
+			"clockId" : clockId,
+			//"abnormalState" : abnormalState,
+			//"abnormalDate" : abnormalDate,
+
+		},
+		header : {
+			Authorization : "OAuth2: token",
+			"Content-Type" : "application/json"
+		}
+	}, function(response) {
+		response.data = JSON.parse(response.data);
+		var state = response.data.state
+		document.getElementById("supplement" + i).innerHTML = "待审批";
+		//document.getElementById("supplement" + i).setAttribute("disabled", true);
+		document.getElementById("supplement" + i).removeAttribute("onclick");
+		UM.toast({
+				    text: state
+				});
+	});
+}
+
+//批量补考勤页面
+function batchAbnormal(t) {
+	var arr = [];
+	$("#ul input[name=um-checkbox]").each(function() {
+		//alert($(this).val());
+		if (this.checked) {
+			arr.push($(this).val());
+		}
+	});
+	var ids = arr.toString();
+	if (arr.length > 0) {
+		summer.ajax({
+			type : 'post',
+			url : summer.getAppStorage('url')+'/checkingin/judgestate',
+			param : {
+				"token":summer.getAppStorage("tokenEntity").token,
+				"ids" : ids,
+			},
+			header : {
+				Authorization : "OAuth2: token",
+				"Content-Type" : "application/json"
+			}
+		}, function(response) {
+			response.data = JSON.parse(response.data);
+			var state = response.data.state;
+			if ("200" == state) {
+				//跳转页面
+				summer.openWin({
+					"id" : "attendanceADD",
+					"url" : "/html/attendance/attendance_add.html?ids=" + ids
+				});
+			}else{
+				UM.toast({
+				    text: "当前正在处于审批中 请耐心等待"
+				});
+			}
+		});
+	} else {
+		UM.toast({
+				    text: "请选择至少一条进行操作"
+				});
+	}
+
+}
+
+//考勤详情
+function particulars(t){
+	$("#clockDiv").empty();
+	summer.ajax({
+			type : 'post',
+			url : summer.getAppStorage('url')+'/checkingin/particulars',
+			param : {
+				"token":summer.getAppStorage("tokenEntity").token,
+				"staffId" : summer.getAppStorage("userId"),
+				"tenantId" : summer.getAppStorage("tenantId"),
+				"checkDate" : ""
+			},
+			header : {
+				Authorization : "OAuth2: token",
+				"Content-Type" : "application/json"
+			}
+		}, function(response) {
+			response.data = JSON.parse(response.data);
+			var state = response.data.state;
+			if(state == "200"){
+				var clockList = response.data.clockList;
+				for (var i = 0; i < clockList.length; i++) {
+					var clock = clockList[i];
+					//拼接表格 +'<p class="list-time">'+clock.leaveEarly+'</p> </div>'
+					var $li = $('<li style="list-style:none;"> <div href="#" class="details-list" >'
+					+'<span class="details-normal"></span>'
+					+'<p class="list-time">'+clock.checkingInDate+'</p>'
+					+'<p class="list-hui">'
+					+'<span>'+clock.officeHours+'</span> <span>'+clock.location+'</span>'+'<span style="float:right;">'+clock.state+'</span>'
+					+'</p>'
+					+'<p class="list-hui">'
+					+'<span>'+clock.closingTime+'</span> <span>'+clock.location+'</span>'+'<span style="float:right;">'+clock.leaveEarly+'</span>'
+					+'</p>'
+					
+					+'</div> </li>');
+					$li.appendTo($("#clockDiv"));
+					}
+				}else{
+					UM.toast({
+				    text: state
+				});
+			}
+			});
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/PropertyInfo.css">
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/propertypayment/PropertyInfo.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" id="propertyInfo">
+            <div class="um-header" id="re-head">
+                <a href="../../index.html" onclick="closeframe()" class="um-back"> 返回</a>
+                <h3>物业缴费</h3>
+                <!-- <a href="#" class="um-header-right ti-home"></a> -->
+                <ul class="um-tabbar">
+                    <li class="active">
+                        <a class="unpaid " onclick="openTab('unpaid')">未清缴</a>
+                    </li>
+                    <li >
+                        <a class="paid" onclick="openTab('paid')">已清缴</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

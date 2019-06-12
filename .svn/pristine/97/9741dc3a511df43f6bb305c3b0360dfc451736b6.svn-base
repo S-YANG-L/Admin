@@ -1,0 +1,31 @@
+function openTab(type) {
+    var header = $summer.byId('re-head');
+    var headerPos = $summer.offset(header);
+    var width = $summer.winWidth();
+    //==320
+    var height = $summer.winHeight() - headerPos.h;
+    //gct:计算frame的高
+    // $('#h-title').html(titles);
+    summer.openFrame({
+        name : type,
+        url : 'html/propertypayment/' + type + '.html',
+        rect : {
+            x : 0,
+            y : headerPos.h,
+            w : width,
+            h : height
+        },
+    });
+}
+
+summerready = function() {
+    openTab('unpaid');
+}
+function closeframe() {
+    summer.closeFrame({
+        id : 'unpaid'
+    });
+    summer.closeFrame({
+        id : 'paid'
+    });
+}

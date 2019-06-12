@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/appointment/appointmentDtl.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div class="um-header" >
+                <a onclick="backClick()"  class="um-back"></a>
+                <h3>预约详情</h3>
+            </div>
+
+            <div class="um-content">
+                <div class="um-noticediv" data-bind="foreach: data">
+                    <div class="notice-head">
+                        <div class="center-icon">
+                            <img alt="" src="../../img/work-repair-icon.png">
+                        </div>
+                        <div style="float:left;">
+                            <span id="type" class="um-media-heading um-mobilebt32" data-bind="text:applicantName"></span>
+                            <p class="um-mobilebthui" data-bind="text:houseName"></p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <span>性别</span><span data-bind="text:applicantSex"></span>
+                        </li>
+                        <li>
+                            <span>手机号</span><span data-bind="text:applicantPhone"></span>
+                        </li>
+                        <li>
+                            <span>申请日期</span><span data-bind="text:applicantDate"></span>
+                        </li>
+                        <li>
+                            <span>申请留言</span><span data-bind="text:leavingMessage"></span>
+                        </li>
+                        <div class="lease-input um-listview-row">
+                            <span>接待人</span>
+                            <select id="jdr" class="um-input-new" style="background:#fff;"></select>
+                        </div>
+                    </ul>
+                    <div class="btn-group btn-group-justify">
+                        <button type="button" class="btn um-btn-info" onclick="agree()">
+                            同意
+                        </button>
+                        <button type="button" class="btn um-btn-primary" onclick="refuse()">
+                            拒绝
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

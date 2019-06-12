@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/iscroll.css" />
+        <style>
+			.um-time {
+				background: #ffffff;
+				border-top: 1px solid #dddddd;
+				border-bottom: 1px solid #dddddd;
+			}
+			.um-time-list {
+				height: 46px;
+				line-height: 46px;
+			}
+			.um-time-list:first-child {
+				border-bottom: 1px solid #dddddd;
+			}
+			.um-time-txt {
+				float: left;
+				color: #8c8d8e;
+			}
+			.um-time-list .fr {
+				position: relative;
+				float: right;
+				margin-right: 30px;
+			}
+			.um-time-list .fr:after {
+				content: "";
+				position: absolute;
+				right: -15px;
+				top: 15px;
+				display: inline-block;
+				width: 14px;
+				height: 14px;
+				border-right: 2px solid #8c8d8e;
+				border-top: 2px solid #8c8d8e;
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+			.um-time-list input {
+				display: block;
+				width: 180px;
+				height: 45px;
+				line-height: 45px;
+				border: none;
+				outline: none;
+				text-align: right;
+				background: #fff;
+			}
+        </style>
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/iscroll.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="memo">
+            <div class="um-header" >
+                <a href="memorecord.html" class="um-back"></a>
+                <h3>发布通知</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-noticediv">
+                    <div class="lease-input">
+                        <span>标题</span>
+                        <input id="title" type="text" class="um-input-new2" placeholder="请输入通知标题">
+                    </div>
+                    <div class="lease-input">
+                        <span>URL</span>
+                        <input id="url" type="text" class="um-input-new2" placeholder="请输入URL">
+                    </div>
+                    <div class="lease-text">
+                        <span>正文</span>
+                        <textarea id="zw" class="form-control lease-msgtext2" placeholder="请输入通知正文"></textarea>
+                    </div>
+                    
+                    <div class="lease-input">
+                        <span>发布范围</span>
+                        <select id="tzry" class="um-input-new" style="background:#fff;">
+                        </select>
+                    </div>
+                   
+                    <div class="lease-input">
+                        <span>发布时间</span>
+                        <div class="fr">
+                            <input id="publishDate" type="text" class="inputnone scroller-date">
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;margin-top: 1.5rem;">
+                    <button class="bluebutton" onclick="submit()">
+                        提交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        $(function() {
+            $('.scroller-date').scroller('destroy').scroller({
+                preset : 'datetime',
+                theme : "ios7",
+                mode : "scroller",
+                display : "bottom",
+                animate : ""
+            });
+        });
+    </script>
+    <script src="../../js/memomange/memo.js"></script>
+</html>

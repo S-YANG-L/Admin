@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" type="text/css" href="../../css/iuapmobile.um.listview.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout-2.2.0.js" ></script>
+        <style>
+			.um-listview-row {
+				border-top: 1px solid #f0f0f0;
+			}
+        </style>
+        <script src="../../js/rentalmanage/propertyInfo.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="propertyInfo">
+            <div class="um-header">
+                <a href="../../index.html" class="um-back"></a>
+                <h3>房源信息</h3>
+            </div>
+            <div class="um-input-search">
+                <input type="search" class="form-control" placeholder="请输入社区名称">
+                <span class="um-input-cancle">取消</span>
+            </div>
+
+            <div class="um-content" style="background:#fff;">
+
+                <div class="um-screen">
+                    <div class="screen01">
+                    	<!-- <span style="line-height: 1.8733rem;float:left;font-size:0.59733rem;padding-left: 0.34rem;">社区：</span> -->
+                        <select class="screen01_drop_down" style="background:#fff;">                           
+                            <option>A社区区</option>
+                            <option>B社区</option>
+                        </select>
+                    </div>
+                    <div class="screen01">
+                        <select class="screen01_drop_down" style="background:#fff;">
+                            <option>小区</option>
+                            <option>A小区</option>
+                            <option>B小区</option>
+                        </select>
+                    </div>
+                    <div class="screen01">
+                        <select class="screen01_drop_down" style="background:#fff;">
+                            <option>楼栋</option>
+                            <option>1栋</option>
+                            <option>2栋</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <ul class="um-list um-no-active" id="shopContent"  data-bind="foreach: listData">
+                    <li class="um-listview-row leaselist" style="background:#fff;">
+                        <a href="#" class="um-list-item um-swipe-action um-no-icon" data-bind="click: $parent.lineClick">
+                        <div class="um-list-item-media" style="padding: 0.2rem 0;">
+                            <img alt="" src="../../img/org1.png">
+                        </div>
+                        <div class="um-list-item-inner" >
+                            <div class="um-list-item-body" style="padding-right:5px;">
+                                <div data-bind="text:title" class="leasebt"></div>
+                                <div>
+                                    <span data-bind="text:status" class="f14 um-gray listview-detail"></span>
+                                </div>
+                            </div>
+                        </div> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

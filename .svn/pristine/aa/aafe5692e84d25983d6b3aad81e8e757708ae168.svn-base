@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/iscroll.css" />
+        <link rel="stylesheet" href="../../css/weui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/islider.css">
+        <style>
+			.iSlider-wrapper {
+				height: 150px;
+			}
+
+        </style>
+
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/iscroll.js"></script>
+        <script src="../../js/rentalmanage/rentalDtl.js"></script>
+        <script type="text/javascript" src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/islider2.js"></script>
+        <script type="text/javascript" src="../../js/jquery-weui.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="rentalDtl">
+            <div class="um-header" >
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>房屋信息维护</h3>
+            </div>
+            <div class="um-content">
+                <div class="um-noticediv">
+                    <ul class="um-list um-no-active" data-bind="foreach: house" style="border-bottom:none;">
+                        <li class="um-listview-row leaselist" style="background-color: #F6F6F6">
+                            <span>社区名称</span>
+                            <span > <span class="um-bulidmaintain" data-bind="text:communityName"></span> </span>
+                        </li>
+                        <li class="um-listview-row leaselist" style="background-color: #F6F6F6">
+                            <span>小区名称</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:villageName"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>楼栋名称</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:buildingName"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>单元号</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:unitNumber"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>楼层</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:floorNumber"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>房间名称</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:houseName"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>建筑面积</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:builtArea"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>套内面积</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:inJacketArea"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>表单价/元</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:tablePrice"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>表单价方式</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:tablePriceMode"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>底单价/元</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:bottomPrice"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>底单价方式</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:bottomPriceMode"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>物业费单价/元</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:propertyCtPrice"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>物业费单价方式</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:propertyCtPriceMode"></span> </span>
+                        </li>
+                        <li style="background-color: #F6F6F6">
+                            <span>当前租户</span>
+                            <span> <span class="um-bulidmaintain" data-bind="text:currentTenant"></span> </span>
+                        </li>
+                        <li>
+                            <span>房源备注</span><span>
+                                <input id="remark" type="text"  class="form-control um-bulidmaintain" data-bind="value:houseRemark">
+                            </span>
+
+                        </li>
+                        <ul style="border-top:none;">
+                            <li>
+                                <div>
+                                    <span style="display:block; margin: 10px 0;">选择图片</span>
+                                    <div class="page__bd">
+                                        <div class="weui-gallery" id="gallery">
+                                            <span class="weui-gallery__img" id="galleryImg"></span>
+                                            <div class="weui-gallery__opr">
+                                                <a href="javascript:" class="weui-gallery__del"> <i class="weui-icon-delete weui-icon_gallery-delete"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="weui-cell__bd">
+                                            <div class="weui-uploader">
+                                                <div class="weui-uploader__bd">
+                                                    <ul class="weui-uploader__files" id="uploaderFiles" >
+                                                    
+                                                    </ul>
+                                                    <div class="weui-uploader__input-box">
+                                                        <input id="uploaderInput" class="weui-uploader__input" accept="image/*" multiple="" value="" onclick="openPhotoAlbum()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="btn-group btn-group-justify">
+                    <button type="button" class="btn um-btn-primary" onclick="submit()">
+                        保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

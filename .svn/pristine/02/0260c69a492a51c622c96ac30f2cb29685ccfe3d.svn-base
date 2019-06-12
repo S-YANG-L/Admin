@@ -1,0 +1,34 @@
+summerready = function() {
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/inspectionPlan/listDeviceInspection",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId"),
+            parentId : summer.getStorage('sbxj').id
+        },
+    }, function(response) {//成功回调
+        response.data = JSON.parse(response.data);
+        var jsonArray = response.data.listDeviceInspection;
+        var jsonArray1 = [{
+            frequency : summer.getStorage('sbxj').frequency,
+            inspectionPerson : summer.getStorage('sbxj').inspectionPerson,
+            inspection : summer.getStorage('sbxj').inspection,
+            inspectionStartTime : summer.getStorage('sbxj').inspectionStartTime,
+            inspectionEndTime : summer.getStorage('sbxj').inspectionEndTime
+        }]
+        viewModel.data = ko.observableArray(jsonArray);
+        viewModel.sbxj = ko.observableArray(jsonArray1);
+        ko.applyBindings(viewModel);
+    }, function(response) {//失败回调
+        alert(response.data);
+        alert(response.error);
+    });
+}
+var ViewModel = function() {
+};
+//Knockout绑定
+var viewModel = new ViewModel();

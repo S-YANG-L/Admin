@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/buildInfo.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../../js/buildingmanage/buildInfo.js" ></script>
+        <style>
+			div.Artical > div {
+				display: none;
+				color: #555;
+			}
+			div.Artical > div.active {
+				display: block;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="um-win" id="buildInfo">
+            <div class="um-header" id="re-head">
+                <a href="village.html" class="um-back"></a>
+                <h3>房屋信息管理</h3>
+            </div>
+            <div class="um-content" style="margin-top:0;">
+                <ul class="um-tabbar um-tabbar-underline2 pt10 pb10 um-tabbar-switch" style="background: #fff;">
+                    <li class="active" data-tar='.aptInfo'>
+                        <a>出租信息</a><span></span>
+                    </li>
+                    <li data-tar='.renthistory'>
+                        <a>租客记录</a><span></span>
+                    </li>
+                </ul>
+                <div class="Artical">
+                    <!-- 出租信息	 -->
+                    <div class="aptInfo active " id="listview1">
+                        <div class="um-noticediv">
+                            <div data-bind="foreach: rentPeoples">
+                                <ul>
+                                    <li>
+                                        <span style="color:#1e82d2;">租客</span>
+                                    </li>
+                                    <li>
+                                        <span>姓名</span><span data-bind="text:customerName"></span>
+                                    </li>
+                                    <li >
+                                        <span>证件号</span><span data-bind="text:certificateNumber"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 租客记录 -->
+                    <div class="renthistory" id="listview2">
+                        <div class="um-noticediv" data-bind="foreach: rentPeoples">
+                            <ul>
+                                <li>
+                                    <span style="color:#1e82d2;">租客</span>
+                                </li>
+                                <li>
+                                    <span>姓名</span><span data-bind="text:customerName"></span>
+                                </li>
+                                <li >
+                                    <span>租期开始时间</span><span data-bind="text:leaseStartDate"></span>
+                                </li>
+                                <li >
+                                    <span>租期结束时间</span><span data-bind="text:leaseEndDate"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                /*导航更换js*/
+                $('ul.um-tabbar-switch  Li').click(function() {
+                    $(this).addClass('active').siblings('.active').removeClass('active');
+                    var tar = $(this).attr('data-tar');
+                    $(tar).addClass('active').siblings('.active').removeClass('active');
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,141 @@
+var ViewModel = function() {
+};
+var viewModel = new ViewModel();
+var title = "";
+summerready = function() {
+    netService(title, 0);
+    viewModel.data = ko.observableArray([]);
+    ko.applyBindings(viewModel);
+    var listview = UM.listview("#listview");
+    //添加控件方法
+    listview.on("itemClick", function(sender, args) {
+        //这里可以处理行点击事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+        var xjjh = viewModel.data()[args.rowIndex];
+        if (xjjh.inspection == "设备巡检") {
+            summer.setStorage('sbxj', xjjh);
+            //设备巡检
+            summer.openWin({
+                id : 'routingDtl',
+                url : 'html/schedulecontrol/routingDtlRec.html'
+            });
+        } else if (xjjh.inspection == "装修巡检") {
+            summer.setStorage('zxxj', xjjh);
+            //装修巡检
+            summer.openWin({
+                id : 'decorationReg',
+                url : 'html/schedulecontrol/decorationRegRec.html'
+            });
+        } else if (xjjh.inspection == "空关巡检") {
+            summer.setStorage('kgxj', xjjh);
+            //空关巡检
+            summer.openWin({
+                id : 'prgHouse',
+                url : 'html/schedulecontrol/prgHouseRec.html'
+            });
+        } else if (xjjh.inspection == "园区楼宇巡检") {
+            summer.setStorage('yqxj', xjjh);
+            //园区巡检
+            summer.openWin({
+                id : 'inspectionMana',
+                url : 'html/schedulecontrol/inspectionManaRec.html'
+            });
+        }
+    });
+}
+//搜索的方法
+function searchClick() {
+    title = document.getElementById("sear").value;
+    //请求页置为0
+    netService(title, 0);
+}
+
+//筛选的方法
+function check() {
+    title = '';
+    //请求页置为0
+    netService(title, 0);
+}
+
+var status;
+var inspection;
+//网络请求
+function netService(title, type) {
+    if ("已生效" == document.getElementById("status").value) {
+        status = "1"
+    } else if ("已过期" == document.getElementById("status").value) {
+        status = "2"
+    } else if ("已完成" == document.getElementById("status").value) {
+        status = "3"
+    } else if ("全部" == document.getElementById("status").value) {
+        status = ""
+    }
+    if ("设备巡检" == document.getElementById("leixing").value) {
+        inspection = "0"
+    } else if ("空关巡检" == document.getElementById("leixing").value) {
+        inspection = "2"
+    } else if ("装修巡检" == document.getElementById("leixing").value) {
+        inspection = "1"
+    } else if ("园区楼宇巡检" == document.getElementById("leixing").value) {
+        inspection = "3"
+    } else if ("全部" == document.getElementById("leixing").value) {
+        inspection = ""
+    }
+    var dstart = $("#start").val();
+    var dend = $("#end").val();
+    var startDate = "";
+    var endDate = "";
+    if (dstart == "" || dstart == null) {
+        startDate = "1000/01/01";
+    } else {
+        startDate = dstart.replace(/\s[\x00-\xff]*/g, '');
+    }
+    if (dend == "" || dend == null) {
+        endDate = "9999/12/31";
+    } else {
+        endDate = dend.replace(/\s[\x00-\xff]*/g, '');
+    }
+    summer.ajax({
+        "header" : {
+            "Content-Type" : "application/json"
+        },
+        "type" : "POST",
+        "url" : summer.getAppStorage('url') + "/inspectionPlan/listInspectionRecord",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            tenantId : summer.getAppStorage("tenantId"),
+            title : title,
+            effectStatus : status,
+            inspection : inspection,
+            inspectionStartTime : startDate,
+            inspectionEndTime : endDate
+        },
+    }, function(response) {//成功回调
+        var data = JSON.parse(response.data);
+        if (type == 0) {//下拉刷新
+            viewModel.data.removeAll();
+        }
+        if (data.code == "200") {
+            var jsonArray = data.listInspectionPlanRecord;
+            for (var i = 0; i < jsonArray.length; i++) {
+                var entity = jsonArray[i];
+                viewModel.data.push(entity)
+            }
+        }
+        document.getElementById("start").value = "";
+        document.getElementById("end").value = "";
+        $('.um-dark').fadeOut(100);
+        $('.um-screenbox').slideUp(200);
+    }, function(response) {//失败回调
+        alert("请联系管理员解决！");
+    });
+}
+
+//筛选内容重置
+function formReset() {
+    document.getElementById("start").value = "";
+    document.getElementById("end").value = "";
+}
+
+function backClick() {
+    summer.closeWin({});
+}

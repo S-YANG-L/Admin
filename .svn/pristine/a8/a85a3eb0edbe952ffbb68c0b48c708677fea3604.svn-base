@@ -1,0 +1,5 @@
+function btn0_click(){
+    if(confirm("真的要退出应用吗?")){
+        summer.exitApp();
+    }
+}

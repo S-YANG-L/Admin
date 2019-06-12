@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="um-win">
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../css/login.css">
+    </head>
+    <body>
+        <div class="um-page um-win" id="index">
+            <div id="main" class="um-content p15 um-box-center um-row">
+                <div class="login um-xs-10 um-sm-6 um-md-4 um-lg-3">
+                    <p class="title tc mb30 fb f24">
+                        智慧社区
+                    </p>
+                    <p class="user f14">
+                        用户名
+                    </p>
+                    <div class="pr">
+                        <input type="text" id="name" class="form-control um-no-brs" placeholder=" ">
+                        <span class="um-input-clear ti-close um-circle  f12"></span>
+                    </div>
+                    <p class="user f14 mt10">
+                        密码
+                    </p>
+                    <div class="pr">
+                        <input type="password" id="pass" class="form-control um-no-brs" placeholder="">
+                        <span class="um-input-clear ti-eye um-circle  f12 "></span>
+                    </div>
+                    <button class="um-btn mt30">
+                        登  录
+                    </button>
+                    <p class="tr mt10 f12" >
+                        <a href="#" onclick="forget()">忘记密码？</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../js/jquery.js" ></script>
+    <script src="../js/jquery.min.js" ></script>
+    <script src="../js/iuapmobile.frameworks.core.js" ></script>
+    <script src="../js/summer.js" ></script>
+    <!-- <script src="../js/summer.min.js" ></script> -->
+    <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    <script src="../js/login.js" ></script>
+</html>

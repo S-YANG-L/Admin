@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <link rel="stylesheet" href="../css/iscroll.css">
+        <script src="../js/reset.js"></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../js/knockout.js"></script>
+        <script type="text/javascript" src="../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../js/cust2.js" ></script>
+        <style>
+			div.notice-body > div {
+				display: none;
+				color: #555;
+			}
+			div.notice-body > div.active {
+				display: block;
+			}
+			.um-listview-row {
+				border-bottom: 1px solid #d8d8d8;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="um-win" id="cust2">
+            <div class="um-header" id="re-head">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>公司客户</h3>
+            </div>
+            <div class="um-content">
+                <div class="mail-search">
+                    <span class="searchicon"> <img src="../img/search-icon.png"> </span>
+                    <input id="sear" type="search" class="search-input" placeholder="查询" onchange="searchClick()">
+                </div>
+                <div class="notice-body">
+                    <div class="unread active" id="listview2">
+                        <ul class="um-list um-no-active" data-bind="foreach:data">
+                            <li class="um-listview-row">
+                                <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                                <div class="mail-head">
+                                    <img alt="" class="um-circle" src="../img/org1.png">
+                                </div>
+                                <div class="um-list-item-inner">
+                                    <div class="um-list-item-body">
+                                        <p data-bind="text:companyName" class="mailp1"></p>
+                                        <p data-bind="text:businessAddress" class="mailp2"></p>
+                                        <p class="mailp3">
+                                            <i class="mail-mobile"></i><span style="float:left;" data-bind="text:companyTelephone"></span>
+                                            <i class="mail-email"></i><span style="float:left;" data-bind="text:email"></span>
+                                        </p>
+                                    </div>
+                                </div> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

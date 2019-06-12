@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <script src="../js/reset.js"></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../js/knockout.js"></script>
+        <script type="text/javascript" src="../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+        <script src="../js/mailDtl.js" ></script>
+
+    </head>
+    <body>
+        <div class="um-win">
+            <div class="um-header" id="re-head">
+                <a onclick="backClick()" class="um-back"></a>
+                <h3>详情</h3>
+            </div>
+            <div class="um-myhead" data-bind="foreach:data">
+                <img src="../img/mailhead.png" class="um-circle um-img-responsive">
+                <span class="mailname" data-bind="text:name"></span>
+                <span class="mailjob" data-bind="text:organizationName"></span>
+            </div>
+            <div class="um-grid um-mailtab">
+                <div class="um-grid-row um-mailbody um-listview-wrap" id="listview">
+                    <ul class="um-list um-no-active" data-bind="foreach:data">
+                        <li class="um-listview-row">
+                            <span>姓名</span><span data-bind="text:name"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>手机号</span><span data-bind="text:custom3"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>邮箱</span><span data-bind="text:email"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>部门</span><span data-bind="text:organizationName"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>角色</span><span data-bind="text:name"></span>
+                        </li>
+                        <li class="um-listview-row">
+                            <span>员工号</span><span data-bind="text:employeeId"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

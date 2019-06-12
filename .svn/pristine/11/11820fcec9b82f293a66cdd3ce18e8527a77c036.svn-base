@@ -1,0 +1,128 @@
+summerready = function() {
+    test();
+    var tokenEntitys = summer.getAppStorage("tokenEntity");
+    var token = tokenEntitys.token;
+    var tokenExpiryTime = tokenEntitys.tokenExpiryTime;
+    var timestamp = (new Date()).getTime();
+    //			alert(token+"-------"+tokenExpiryTime+"====="+timestamp);
+    if (timestamp > tokenExpiryTime) {
+        UM.toast({
+            text : 'Token已过期，请重新登录'
+        });
+    }
+    if ( typeof (token) == "undefined" || token == "null" || null == token) {
+        //不进行跳转
+    } else {
+        //进入主页
+        var t = (new Date()).valueOf();
+        summer.openWin({
+            "id" : "index" + t,
+            "url" : "/index.html"
+        });
+    }
+}
+function login() {
+    var account = $("#uphone").val();
+    var upass = $("#upass").val();
+    if ("" == account || "" == upass) {
+        //		alert("请输入手机号或密码");
+        UM.toast({
+            text : '请输入账号或密码'
+        });
+    } else {
+        summer.post(summer.getAppStorage("url") + "/CustodianLongin/gologin", {
+            "token" : summer.getAppStorage("tokenEntity"), //可以为空
+            "account" : account,
+            "password" : upass,
+        }, {
+            Authorization : "OAuth2:token"
+        }, function(response) {
+            if ("Token已过期，请重新登录" == response.data) {
+                UM.toast({
+                    text : '登录已失效，请重新登录'
+                });
+                var t = (new Date()).valueOf();
+                summer.openWin({
+                    "id" : "signin" + t,
+                    "url" : "/html/signin.html"
+                });
+            }
+            response.data = JSON.parse(response.data);
+            var code = response.data.code
+            if (200 == code) {
+                var user = response.data.user;
+                var userId = user.id;
+                //ID
+                var userName = user.name;
+                var organizationName = user.organizationName;
+                //姓名
+                var loginId = user.loginId;
+                var headImageUrl = user.headImageUrl;
+                //登录名
+                var tenantid = user.tenantid;
+                //租户id
+                var password = user.password;
+                //密码
+                var tokenEntity = response.data.tokenEntity;
+                //        	var jsonStr = JSON.stringify(tokenEntity);
+                //       	alert("jsonStr=="+jsonStr);
+                //        	alert(userId+","+userName+","+userPhone+","+userPassword);
+                //保存到localServer
+                //       	summer.setStorage("tokenEntity",tokenEntity);
+                summer.setAppStorage("userId", userId);
+                summer.setAppStorage("userName", userName);
+                summer.setStorage("userName", userName);
+                summer.setStorage("organizationName", organizationName);
+                summer.setStorage("headImageUrl", headImageUrl);
+                summer.setAppStorage("loginId", loginId);
+                //summer.setAppStorage("userPhone",userPhone);
+                summer.setAppStorage("tenantId", tenantid);
+                //        	summer.setAppStorage("userPassword",userPassword);
+                summer.setAppStorage("tokenEntity", tokenEntity);
+                //alert( summer.getAppStorage("userId"));
+                var t = (new Date()).valueOf();
+                summer.openWin({
+                    "id" : "index" + t,
+                    "url" : "index.html"
+                });
+                //summer.closeWin("#signin");
+
+            }
+            if (201 == code) {
+                //alert("用户名或密码错误");
+                UM.toast({
+                    text : '账号或密码错误'
+                });
+            }
+        }, function(response) {
+            //alert(response.error);
+        });
+    }
+    test1();
+}
+
+function test1() {
+    summer.setStorage("name", $("#uphone").val());
+    summer.setStorage("password", $("#upass").val());
+    var bool = $("input[type='checkbox']").is(':checked')
+    summer.setStorage("checkbox", bool);
+    summer.setStorage("true", true);
+}
+
+function test() {
+    var name = summer.getStorage("name");
+    var pass = summer.getStorage("password");
+    var boolea = summer.getStorage("checkbox");
+    if (boolea == summer.getStorage("true")) {
+        $("#upass").val(pass);
+        $("#uphone").val(name);
+        $("input[type='checkbox']").attr("checked", true);
+    } else {
+    }
+}
+
+function forget() {
+    summer.toast({
+        "msg" : "请联系后台管理员找回密码!"
+    })
+}

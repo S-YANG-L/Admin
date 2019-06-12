@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title>登录</title>
+        <link rel="stylesheet" href="../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../css/font-icons.css">
+        <script src="../js/reset.js"></script>
+        <script src="../js/summer.js" ></script>
+        <script src="../js/jquery.min.js" ></script>
+        <script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../js/signin.js" ></script>
+    </head>
+    <body>
+        <div class="um-win" style="background:#FFF;">
+            <div class="signin-logo">
+                <img src="../img/signin-logo.png">
+            </div>
+            <div class="signin-body">
+                <input type="text" class="signin-ipt" placeholder="请输入登录名" id="uphone">
+            </div>
+            <div class="signin-body">
+                <input type="password" class="signin-ipt" placeholder="请输入密码" id="upass">
+                <span class="eyes password-close"></span>
+            </div>
+            <div class="signin-body2">
+                <span class="auto-signin">
+                    <input type="checkbox" id="color-input-blue"/>
+                    <label  for="color-input-blue"></label >自动登录 </span>
+                <span class="forget-password"><a href="">忘记密码?</a> </span>
+            </div>
+            <button class="signin-btn" onclick="login()" id="ref">
+                登录
+            </button>
+        </div>
+        <script>
+            $(function() {
+                $(".eyes").click(function() {
+                    if ($(".signin-ipt").attr("type") == "password") {
+                        $(".signin-ipt").attr("type", "text");
+                        $(".eyes").addClass("password-open");
+                        $(".eyes").removeClass("password-close");
+                    } else {
+                        $(".signin-ipt").attr("type", "password");
+                        $(".eyes").removeClass("password-open");
+                        $(".eyes").addClass("password-close");
+                    }
+                })
+            })
+            
+
+        </script>
+
+    </body>
+
+</html>

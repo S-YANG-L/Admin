@@ -1,0 +1,285 @@
+var batchno ='';
+//初始化执行
+summerready = function() {
+	selectOrder();
+}
+
+
+
+//获取url中的参数
+function getQueryString(name) { 
+var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+var r = window.location.search.substr(1).match(reg); 
+if (r != null) return unescape(r[2]); return null; 
+}
+
+//查询工单详细信息
+function selectOrder(){
+	var id = getQueryString("id");
+	$("#orderID").val(id);
+	summer.ajax({
+		type : 'post',
+		url : summer.getAppStorage('url') +'/order/selectOrder',
+		param : {
+			"token":summer.getAppStorage("tokenEntity").token,
+			"id" : id
+		},
+		header : {
+			//Authorization : "OAuth2: token",
+			//"Content-Type" : "application/json"
+			Authorization : "OAuth2: token"
+		}
+	}, function(response) {
+		response.data = JSON.parse(response.data);
+		var state = response.data.state;
+		var orderBusinessDraft = response.data.orderBusinessDraft;
+		if(state=="200"){
+			if(orderBusinessDraft.handlingSituation != null){
+				document.getElementById("workFlow").innerHTML= orderBusinessDraft.handlingSituation;
+			}
+			if(orderBusinessDraft.userEvaluate != null){
+				document.getElementById("userEvaluate").innerHTML=orderBusinessDraft.userEvaluate;
+			}
+			var userFraction= orderBusinessDraft.userFraction;//客户满意度
+			//var oDiv=document.getElementById('rank');
+				//var aLi=oDiv.getElementsByTagName('li');
+				for(var i = 0; i < userFraction; i++){
+					document.getElementById("li"+i).className='hover';
+				}
+				
+				//$(this).nextAll().removeClass("hover");
+			document.getElementById("theme").innerHTML= orderBusinessDraft.orderContent;
+			document.getElementById("serialNumber").innerHTML= orderBusinessDraft.billNumber;
+			batchno = orderBusinessDraft.processPicture;//处理图片
+			var batchnoImage = orderBusinessDraft.repairImage;//报修图片
+			//alert(batchnoImage);
+			getprocessPicture();
+			getRepairImage(batchnoImage);
+			//投诉咨询
+			if(orderBusinessDraft.orderType == "0"){
+				//客户名称
+					document.getElementById("REAL_ESTATE_CUSTOMER1").style.display = "";
+					document.getElementById("REAL_ESTATE_CUSTOMER").innerHTML=orderBusinessDraft.realEstateCustomer;
+					//联系人姓名
+					document.getElementById("CONTACTS1").style.display = "";
+					document.getElementById("CONTACTS").innerHTML=orderBusinessDraft.contacts;
+					//报修项目
+					document.getElementById("ORDER_CONTENT1").style.display = "";
+					document.getElementById("ORDER_CONTENT").innerHTML=orderBusinessDraft.orderContent;
+					//房间名称
+					document.getElementById("HOUSE_NAME1").style.display = "";
+					document.getElementById("HOUSE_NAME").innerHTML=orderBusinessDraft.houseName;
+					//联系电话
+					document.getElementById("CONTACT_NUMBER1").style.display = "";
+					document.getElementById("CONTACT_NUMBER").innerHTML=orderBusinessDraft.contactNumber;
+					//联系地址
+					document.getElementById("CONTACT_ADDRESS1").style.display = "";
+					document.getElementById("CONTACT_ADDRESS").innerHTML=orderBusinessDraft.contactAddress;
+					//投诉人
+					document.getElementById("COMPLAINT_PEOPLE1").style.display = "";
+					document.getElementById("COMPLAINT_PEOPLE").innerHTML=orderBusinessDraft.complaintPeople;
+					//投诉ren电话
+					document.getElementById("COMPLAINT_PHONE1").style.display = "";
+					document.getElementById("COMPLAINT_PHONE").innerHTML=orderBusinessDraft.complaintPhone;
+					//客服事件
+					document.getElementById("CUSTOMER_EVENT1").style.display = "";
+					document.getElementById("CUSTOMER_EVENT").innerHTML=orderBusinessDraft.customerEvent;
+					//客服事件来源
+					document.getElementById("CUSTOMER_EVENT_SOURCE1").style.display = "";
+					document.getElementById("CUSTOMER_EVENT_SOURCE").innerHTML=orderBusinessDraft.customerEventSource;
+					//制单日期
+					document.getElementById("DRAFT_DATE1").style.display = "";
+					document.getElementById("DRAFT_DATE").innerHTML=orderBusinessDraft.draftDate;
+					//完成日期
+					document.getElementById("ACCOMPLISH_TIME1").style.display = "";
+					document.getElementById("ACCOMPLISH_TIME").innerHTML=orderBusinessDraft.accomplishTime;
+					//投诉内容
+					document.getElementById("COMPLAINT_CONTENT1").style.display = "";
+					document.getElementById("COMPLAINT_CONTENT").innerHTML=orderBusinessDraft.complaintContent;
+					//备注
+					document.getElementById("REMARK1").style.display = "";
+					if(null !=orderBusinessDraft.remark){
+						document.getElementById("REMARK").innerHTML= orderBusinessDraft.remark;
+					}
+			}
+			
+			//报修
+			if(orderBusinessDraft.orderType == "1"){
+				//客户姓名
+					document.getElementById("REAL_ESTATE_CUSTOMER1").style.display = "";
+					document.getElementById("REAL_ESTATE_CUSTOMER").innerHTML=orderBusinessDraft.realEstateCustomer ;
+					//联系人姓名
+					document.getElementById("CONTACTS1").style.display = "";
+					document.getElementById("CONTACTS").innerHTML= orderBusinessDraft.contacts;
+					//报修项
+					document.getElementById("ORDER_CONTENT1").style.display = "";
+					document.getElementById("ORDER_CONTENT").innerHTML= orderBusinessDraft.orderContent;
+					//房间名称
+					document.getElementById("HOUSE_NAME1").style.display = "";
+					document.getElementById("HOUSE_NAME").innerHTML= orderBusinessDraft.houseName;
+					//联系电话
+					document.getElementById("CONTACT_NUMBER1").style.display = "";
+					document.getElementById("CONTACT_NUMBER").innerHTML= orderBusinessDraft.contactNumber;
+					//联系地址
+					document.getElementById("CONTACT_ADDRESS1").style.display = "";
+					document.getElementById("CONTACT_ADDRESS").innerHTML= orderBusinessDraft.contactAddress;
+					//报修人
+					document.getElementById("REPAIR_PEOPLE1").style.display = "";
+					document.getElementById("REPAIR_PEOPLE").innerHTML= orderBusinessDraft.repairPeople;
+					//报修内容
+					document.getElementById("REPAIR_CONTENT1").style.display = "";
+					document.getElementById("REPAIR_CONTENT").innerHTML= orderBusinessDraft.repairContent;
+					//制单日期
+					document.getElementById("DRAFT_DATE1").style.display = "";
+					document.getElementById("DRAFT_DATE").innerHTML=orderBusinessDraft.draftDate;
+					//完成日期
+					document.getElementById("ACCOMPLISH_TIME1").style.display = "";
+					document.getElementById("ACCOMPLISH_TIME").innerHTML=orderBusinessDraft.accomplishTime;
+					//备注
+					document.getElementById("REMARK1").style.display = "";
+					if(null !=orderBusinessDraft.remark){
+						document.getElementById("REMARK").innerHTML= orderBusinessDraft.remark;
+					}
+					//照片
+					document.getElementById("repairImage").style.display = "";
+			}
+			
+			//预约
+			if(orderBusinessDraft.orderType == "2"){
+				//客户姓名
+					document.getElementById("REAL_ESTATE_CUSTOMER1").style.display = "";
+					document.getElementById("REAL_ESTATE_CUSTOMER").innerHTML=orderBusinessDraft.realEstateCustomer ;
+					//联系人姓名
+					document.getElementById("CONTACTS1").style.display = "";
+					document.getElementById("CONTACTS").innerHTML= orderBusinessDraft.contacts;
+					//报修项
+					document.getElementById("ORDER_CONTENT1").style.display = "";
+					document.getElementById("ORDER_CONTENT").innerHTML= orderBusinessDraft.orderContent;
+					//房间名称
+					document.getElementById("HOUSE_NAME1").style.display = "";
+					document.getElementById("HOUSE_NAME").innerHTML= orderBusinessDraft.houseName;
+					//联系电话
+					document.getElementById("CONTACT_NUMBER1").style.display = "";
+					document.getElementById("CONTACT_NUMBER").innerHTML= orderBusinessDraft.contactNumber;
+					//联系地址
+					document.getElementById("CONTACT_ADDRESS1").style.display = "";
+					document.getElementById("CONTACT_ADDRESS").innerHTML= orderBusinessDraft.contactAddress;
+					//制单日期
+					document.getElementById("DRAFT_DATE1").style.display = "";
+					document.getElementById("DRAFT_DATE").innerHTML=orderBusinessDraft.draftDate;
+					//预约日期
+					document.getElementById("APPOINTMENT_DATE1").style.display = "";
+					document.getElementById("APPOINTMENT_DATE").innerHTML= orderBusinessDraft.appointmentDate;
+					//完成日期
+					document.getElementById("ACCOMPLISH_TIME1").style.display = "";
+					document.getElementById("ACCOMPLISH_TIME").innerHTML=orderBusinessDraft.accomplishTime;
+					//服务地址
+					document.getElementById("SERVICE_ADDRESS1").style.display = "";
+					document.getElementById("SERVICE_ADDRESS").innerHTML= orderBusinessDraft.serviceAddress;
+					//服务内容
+					document.getElementById("SERVICE_CONTENT1").style.display = "";
+					document.getElementById("SERVICE_CONTENT").innerHTML= orderBusinessDraft.serviceContent;
+					//服务类型
+					document.getElementById("SERVICE_TYPE1").style.display = "";
+					document.getElementById("SERVICE_TYPE").innerHTML= orderBusinessDraft.serviceType;
+					//备注
+					document.getElementById("REMARK1").style.display = "";
+					if(null !=orderBusinessDraft.remark){
+						document.getElementById("REMARK").innerHTML= orderBusinessDraft.remark;
+					}
+			}
+
+		}else{
+			UM.toast({
+			  	  text: response.data.state
+				});
+		}
+			});
+}
+
+//获取处理图片
+function getprocessPicture(){
+	summer.ajax({
+        "header" : {
+            //"Content-Type" : "application/json"
+            Authorization : "OAuth2: token"
+        },
+        "type" : "POST",
+        "url" : "http://106.74.146.162:9080/document/uploadfile/getfileinfo",
+        "async" : "false",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            batchno : batchno
+        },
+    }, function(response) {//成功回调
+    //alert(response.data);
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = $summer.strToJson(response.data.message);
+        var tmpl = '<li  class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery"),
+            $galleryImg = $("#galleryImg"),
+            $uploaderInput = $("#uploaderInput"),
+            $uploaderFiles = $("#uploaderFiles");
+        for ( i = 0; i < jsonArray1.length; i++) {
+            var imgPathWS = jsonArray1[i].filePath;
+            amgId = jsonArray1[i].fileId;
+            $uploaderFiles.append($(tmpl.replace('#url#', imgPathWS)));
+        }
+        //大小图
+        $uploaderFiles.on("click", "li", function() {
+                $galleryImg.attr("style", this.getAttribute("style"));
+                $gallery.fadeIn(100);
+            });
+            $gallery.on("click", function() {
+                $gallery.fadeOut(100);
+            });
+        
+    }, function(response) {//失败回调
+        //alert("请联系管理员！");
+    });
+}
+//获取报修图片
+function getRepairImage(batchnoImage){
+	summer.ajax({
+        "header" : {
+            //"Content-Type" : "application/json"
+            Authorization : "OAuth2: token"
+        },
+        "type" : "POST",
+        "url" : "http://106.74.146.162:9080/document/uploadfile/getfileinfo",
+        "async" : "false",
+        "param" : {
+            token : summer.getAppStorage("tokenEntity").token,
+            batchno : batchnoImage
+        },
+    }, function(response) {//成功回调
+    //alert(response.data);
+        response.data = JSON.parse(response.data);
+        var jsonArray1 = $summer.strToJson(response.data.message);
+        var tmpl = '<li  class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery1"),
+            $galleryImg = $("#galleryImg1"),
+            $uploaderInput = $("#uploaderInput1"),
+            $uploaderFiles = $("#uploaderFiles1");
+        for ( i = 0; i < jsonArray1.length; i++) {
+            var imgPathWS = jsonArray1[i].filePath;
+            amgId = jsonArray1[i].fileId;
+            $uploaderFiles.append($(tmpl.replace('#url#', imgPathWS)));
+        }
+        //大小图
+        $uploaderFiles.on("click", "li", function() {
+                $galleryImg.attr("style", this.getAttribute("style"));
+                $gallery.fadeIn(100);
+            });
+            $gallery.on("click", function() {
+                $gallery.fadeOut(100);
+            });
+        
+    }, function(response) {//失败回调
+        //alert("请联系管理员！");
+    });
+}
+
+function fanhui(){
+	summer.closeWin({});
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+        <link rel="stylesheet" href="../../css/font-icons.css">
+        <script src="../../js/reset.js"></script>
+        <script src="../../js/summer.js" ></script>
+        <script src="../../js/jquery.min.js" ></script>
+        <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/messagemanage/todoDtl.js" ></script>
+        <script src="../../js/knockout.js"></script>
+        <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.listview.js"></script>
+    </head>
+    <body>
+        <div class="um-win" id="index">
+            <div class="um-header" >
+                <a onclick="backClick()"  class="um-back"></a>
+                <h3>待办详情</h3>
+            </div>
+
+            <div class="um-content">
+                <div class="um-noticediv" data-bind="foreach: data">
+                    <div class="notice-head">
+                        <div class="center-icon">
+                            <img alt="" src="../../img/work-repair-icon.png">
+                        </div>
+                        <div style="float:left;">
+                            <h4 class="um-media-heading um-mobilebt32" data-bind="text:orderType"></h4>
+                            <p class="um-mobilebthui" data-bind="text:draftDate"></p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <span>房间号</span><span data-bind="text:houseName"></span>
+                        </li>
+                        <li>
+                            <span>姓名</span><span data-bind="text:contacts"></span>
+                        </li>
+                        <li>
+                            <span>电话</span><span data-bind="text:contactNumber"></span>
+                        </li>
+                    </ul>
+                    <div class="btn-group btn-group-justify">
+                        <button type="button" class="btn um-btn-info">
+                            同意
+                        </button>
+                        <button type="button" class="btn um-btn-primary">
+                            拒绝
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

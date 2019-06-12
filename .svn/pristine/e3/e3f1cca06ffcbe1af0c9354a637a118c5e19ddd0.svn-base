@@ -1,0 +1,30 @@
+﻿function notice() {
+summer.openWin({
+id : 'repairinfodetail',
+url : '/html/memomange/memorecord.html',
+pageParam : {
+name : 'test'
+}
+});
+
+}
+
+function tickling() {
+summer.openWin({
+id : '',
+url : '',
+pageParam : {
+name : 'test'
+}
+});
+}
+
+function deal() {
+summer.openWin({
+id : 'repairinfodetail',
+url : '/html/messagemanage/pendingorder.html',
+pageParam : {
+name : 'test'
+}
+});
+}
